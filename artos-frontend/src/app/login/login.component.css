@@ -1,0 +1,17 @@
+.topdiv{
+  display: flex; justify-content: center;
+}
+.loginPanel{
+  padding: 50px;
+}
+.loginPanelTitle{
+  padding-bottom: 50px;
+}
+form{
+  display: flex;
+  flex-flow: column wrap;
+  align-content: space-between;
+}
+#topMenue{
+  display: hidden;
+}

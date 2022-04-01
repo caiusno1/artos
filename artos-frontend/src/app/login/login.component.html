@@ -1,0 +1,19 @@
+<div class="topdiv">
+<mat-card class="loginPanel">
+  <mat-card-title class="loginPanelTitle">Welcome to ARTOS</mat-card-title>
+  <mat-card-content>
+  <div style="display: grid;">
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput type="text" #usernameField>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" #passwordField>
+    </mat-form-field>
+    <button mat-stroked-button (click)="login(usernameField.value, passwordField.value)">Login</button>
+    <button mat-stroked-button (click)="redirectToRegisterView()">Register For Free</button>
+  </div>
+</mat-card-content>
+</mat-card>
+</div>

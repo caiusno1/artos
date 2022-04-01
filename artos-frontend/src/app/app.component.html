@@ -1,0 +1,15 @@
+<div id="all">
+  <div id="head">
+    <ul id="topMenue" *ngIf="auth.authStatusObservable.value">
+      <li><a routerLink="/" routerLinkActive="active">General Setting</a></li>
+      <li><a routerLink="/experiments" routerLinkActive="active">Experiments</a></li>
+      <li><button id="logout" (click)="logout()"><mat-icon aria-hidden="false">logout</mat-icon>Logout</button></li>
+    </ul>
+    <h1>ARTOS Control Center</h1>
+
+  <div>
+  <div id="body">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

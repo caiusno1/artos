@@ -1,0 +1,1 @@
+docker run --name artosdb -e MYSQL_ROOT_PASSWORD=<password> -e MYSQL_DATABASE=artosdb -p 3306:3306 -d mysql
