@@ -18,8 +18,8 @@ public class ExperimentController : MonoBehaviour
     private int currentPosition;
     private int repetitions = 3;
     private static ExperimentController Instance;
-    private Button leftBtn;
-    private Button rightBtn;
+    private ButtonProxy leftBtn;
+    private ButtonProxy rightBtn;
     private int currentState = 0;
     public TMPro.TMP_Text stateField;
     private List<TOJResult> results = new List<TOJResult>();
@@ -122,8 +122,8 @@ public class ExperimentController : MonoBehaviour
             ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].transform.GetChild(0).gameObject.SetActive(true);
             leftBtn = ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].GetComponentInChildren<TOJGrid>().leftBtn;
             rightBtn = ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].GetComponentInChildren<TOJGrid>().rightBtn;
-            leftBtn.onClick.AddListener(LeftBtnHandler);
-            rightBtn.onClick.AddListener(RightBtnHandler);
+            leftBtn.AddListener(LeftBtnHandler);
+            rightBtn.AddListener(RightBtnHandler);
             //this.InputEnabled = false;
             this.state = StateMachine.Tutorial;
             StartCoroutine(ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].GetComponentInChildren<TOJGrid>().StartSingleExperiment(this.runtimeSetup[currentPosition], () => {
@@ -146,8 +146,8 @@ public class ExperimentController : MonoBehaviour
     }
     public void LeftBtnHandler()
     {
-        leftBtn.onClick.RemoveAllListeners();
-        rightBtn.onClick.RemoveAllListeners();
+        leftBtn.RemoveAllListeners();
+        rightBtn.RemoveAllListeners();
         var result = CheckUserResult(true);
         var probeSelected = CheckProbeFirst(true);
         if(this.runtimeSetup[this.currentPosition].ContainsKey("Mode") && this.runtimeSetup[this.currentPosition]["Mode"] == "Tutorial")
@@ -176,8 +176,8 @@ public class ExperimentController : MonoBehaviour
     }
     public void RightBtnHandler()
     {
-        leftBtn.onClick.RemoveAllListeners();
-        rightBtn.onClick.RemoveAllListeners();
+        leftBtn.RemoveAllListeners();
+        rightBtn.RemoveAllListeners();
         var result = CheckUserResult(false);
         var probeSelected = CheckProbeFirst(false);
 
@@ -220,8 +220,8 @@ public class ExperimentController : MonoBehaviour
             rightBtn = ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].GetComponentInChildren<TOJGrid>().rightBtn;
             StartCoroutine(ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].GetComponentInChildren<TOJGrid>().StartSingleExperiment(this.runtimeSetup[currentPosition], () => {
                 this.state = StateMachine.TOJ_EVAL;
-                leftBtn.onClick.AddListener(LeftBtnHandler);
-                rightBtn.onClick.AddListener(RightBtnHandler);
+                leftBtn.AddListener(LeftBtnHandler);
+                rightBtn.AddListener(RightBtnHandler);
             }));
 
         }

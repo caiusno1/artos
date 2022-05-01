@@ -23,8 +23,8 @@ public class TOJGrid : MonoBehaviour
     [HideInInspector]
     public bool LeftFirst = true;
     public bool probeIsLeft;
-    public Button leftBtn;
-    public Button rightBtn;
+    public ButtonProxy leftBtn;
+    public ButtonProxy rightBtn;
 
     public GameObject stimuliHolder;
     public int xaxisLength = 0;
@@ -238,7 +238,7 @@ public class TOJGrid : MonoBehaviour
                 this.tOJGrid.secondCardGO = btn.gameObject;
                 this.tOJGrid.secondCardID = lable;
             }
-            else if (btn.gameObject == this.tOJGrid.firstCardGO)
+            else if (btn.gameObject == this.tOJGrid.firstCardGO || (ExperimentController.GetInstance().state != StateMachine.MemoryChooseSecond && ExperimentController.GetInstance().state != StateMachine.MemoryChoseFirst))
             {
                 return;
             }
