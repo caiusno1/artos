@@ -75,7 +75,8 @@ public class TOJGrid : MonoBehaviour
             child.gameObject.name = "" + colorsInput.IndexOf(color);
             memoryLable[idx2].Add("" + iteratorVar);
             var tojGrid = this;
-            child.GetComponent<Button>().onClick.AddListener(new ButtonMemoryAction(child,this,color, child.gameObject.name).getListener);
+            var btnProxy = child.GetComponent<ButtonProxy>();
+            btnProxy.AddListener(new ButtonMemoryAction(child,this,color, child.gameObject.name).getListener);
             idx++;
             if(idx >= xaxisLength)
             {

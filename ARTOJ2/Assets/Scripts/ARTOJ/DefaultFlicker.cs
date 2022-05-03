@@ -13,8 +13,8 @@ public class DefaultFlicker : MonoBehaviour
     private UnityAction callback;
     private GameObject reference;
     private GameObject probe;
-    private Image probeHidable;
-    private Image refHidable;
+    private GameObject probeHidable;
+    private GameObject refHidable;
     private int POSITIVE_SOA_IN_FRAMES = 0;
     private bool tojStarted = false;
     // Start is called before the first frame update
@@ -32,32 +32,32 @@ public class DefaultFlicker : MonoBehaviour
             {
                 if (SOA_IN_FRAMES < 0)
                 {
-                    probeHidable.enabled = false;
+                    probeHidable.active = false;
                 }
                 else if (SOA_IN_FRAMES > 0)
                 {
-                    refHidable.enabled = false;
+                    refHidable.active = false;
                 }
                 else
                 {
-                    probeHidable.enabled = false;
-                    refHidable.enabled = false;
+                    probeHidable.active = false;
+                    refHidable.active = false;
                 }
             }
             else if (FrameIdx == 1)
             {
                 if (SOA_IN_FRAMES < 0)
                 {
-                    probeHidable.enabled = true;
+                    probeHidable.active = true;
                 }
                 else if (SOA_IN_FRAMES > 0)
                 {
-                    refHidable.enabled = true;
+                    refHidable.active = true;
                 }
                 else
                 {
-                    probeHidable.enabled = true;
-                    refHidable.enabled = true;
+                    probeHidable.active = true;
+                    refHidable.active = true;
                     enabled = false;
                     this.callback.Invoke();
                 }
@@ -68,22 +68,22 @@ public class DefaultFlicker : MonoBehaviour
             {
                 if (SOA_IN_FRAMES < 0)
                 {
-                    refHidable.enabled = false;
+                    refHidable.active = false;
                 }
                 else if (SOA_IN_FRAMES > 0)
                 {
-                    probeHidable.enabled = false;
+                    probeHidable.active = false;
                 }
             }
             else if(FrameIdx == POSITIVE_SOA_IN_FRAMES + 1)
             {
                 if (SOA_IN_FRAMES < 0)
                 {
-                    refHidable.enabled = true;
+                    refHidable.active = true;
                 }
                 else if (SOA_IN_FRAMES > 0)
                 {
-                    probeHidable.enabled = true ;
+                    probeHidable.active = true ;
                     
                 }
                 reference = null;
@@ -108,9 +108,9 @@ public class DefaultFlicker : MonoBehaviour
         this.callback = callback;
         this.enabled = true;
     }
-    private Image GetHideable(GameObject go)
+    private GameObject GetHideable(GameObject go)
     {
-        return go.GetComponent<Image>();
+        return go.transform.Find("BackPlate").gameObject;
     }
     public bool HasFinishedTOJ()
     {
