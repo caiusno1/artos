@@ -19544,6 +19544,10 @@ PrefabInstance:
       propertyPath: rightBtn
       value: 
       objectReference: {fileID: 676291403}
+    - target: {fileID: 3985705726925103110, guid: fdd920c737b0b7d409e2132ae470d89c, type: 3}
+      propertyPath: defaultBackPlate
+      value: 
+      objectReference: {fileID: 2100000, guid: ec72a3a105768f746b556a8dfdae61a8, type: 2}
     - target: {fileID: 3985705726925103115, guid: fdd920c737b0b7d409e2132ae470d89c, type: 3}
       propertyPath: m_Name
       value: Tablet
