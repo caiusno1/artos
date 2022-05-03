@@ -18,6 +18,7 @@ public class TOJGrid : MonoBehaviour
     public ImageTargetBehaviour target;
 #endif
     // public bool TOJ_ready = false;
+    public Material defaultBackPlate;
     [HideInInspector]
     public bool StateSet = false;
     [HideInInspector]
@@ -191,19 +192,21 @@ public class TOJGrid : MonoBehaviour
             yield return new WaitForSeconds(1);
             if (tojGrid.firstCardID.Equals(tojGrid.secondCardID))
             {
-                tojGrid.firstCardGO.GetComponent<Button>().onClick.RemoveAllListeners();
-                tojGrid.secondCardGO.GetComponent<Button>().onClick.RemoveAllListeners();
+                tojGrid.firstCardGO.GetComponent<ButtonProxy>().RemoveAllListeners();
+                tojGrid.secondCardGO.GetComponent<ButtonProxy>().RemoveAllListeners();
                 Debug.Log("Memory Correct");
             }
             else
             {
-                tojGrid.firstCardGO.GetComponent<Image>().material = null;
-                tojGrid.secondCardGO.GetComponent<Image>().material = null;
+                var firstCardMeshRenderer = tojGrid.firstCardGO.transform.Find("BackPlate").GetChild(0).GetComponent<MeshRenderer>();
+                var secondCardMeshRenderer = tojGrid.secondCardGO.transform.Find("BackPlate").GetChild(0).GetComponent<MeshRenderer>();
+                firstCardMeshRenderer.material = defaultBackPlate;
+                secondCardMeshRenderer.material = defaultBackPlate;
 
-                tojGrid.firstCardGO.GetComponent<Image>().enabled = false;
-                tojGrid.firstCardGO.GetComponent<Image>().enabled = true;
-                tojGrid.secondCardGO.GetComponent<Image>().enabled = false;
-                tojGrid.secondCardGO.GetComponent<Image>().enabled = true;
+                firstCardMeshRenderer.enabled = false;
+                firstCardMeshRenderer.enabled = true;
+                secondCardMeshRenderer.enabled = false;
+                secondCardMeshRenderer.enabled = true;
                 Debug.Log("Memory Wrong");
             }
             tojGrid.secondCardGO = null;
@@ -246,9 +249,10 @@ public class TOJGrid : MonoBehaviour
 
                 if (ExperimentController.GetInstance().state == StateMachine.MemoryChoseFirst || ExperimentController.GetInstance().state == StateMachine.MemoryChooseSecond)
             {
-                btn.GetComponent<Image>().material = color;
-                btn.GetComponent<Image>().enabled = false;
-                btn.GetComponent<Image>().enabled = true;
+                var meshRenderer = btn.transform.Find("BackPlate").GetChild(0).GetComponent<MeshRenderer>();
+                meshRenderer.material = color;
+                meshRenderer.enabled = false;
+                meshRenderer.enabled = true;
             }
 
             if (ExperimentController.GetInstance().state == StateMachine.MemoryChoseFirst)
