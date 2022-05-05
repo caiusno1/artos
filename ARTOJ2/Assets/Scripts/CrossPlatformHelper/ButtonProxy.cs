@@ -11,7 +11,7 @@ public class ButtonProxy : MonoBehaviour
     private Button btn;
     private Interactable btnMRTK;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (!isMRTK)
         {
