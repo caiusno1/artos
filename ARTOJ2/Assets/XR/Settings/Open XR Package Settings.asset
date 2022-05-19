@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c79c911b38743a649b1c1eddb5097202, type: 3}
   m_Name: HandTrackingFeaturePlugin Android
   m_EditorClassIdentifier: 
-  m_enabled: 0
+  m_enabled: 1
   nameUi: Hand Tracking
   version: 1.4.0
   featureIdInternal: com.microsoft.openxr.feature.handtracking
@@ -508,6 +508,37 @@ MonoBehaviour:
   company: Microsoft
   priority: 0
   required: 0
+--- !u!114 &2030642309462904655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1927c045052a06d49a9b21fdcaa26db6, type: 3}
+  m_Name: OculusXRFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: OculusXR Feature
+  version: 0.0.1
+  featureIdInternal: com.oculus.openxr.feature.oculusxr
+  openxrExtensionStrings: 'XR_KHR_vulkan_enable XR_KHR_D3D11_enable XR_OCULUS_common_reference_spaces
+    XR_FB_display_refresh_rate XR_EXT_performance_settings XR_FB_composition_layer_image_layout
+    XR_KHR_android_surface_swapchain XR_FB_android_surface_swapchain_create XR_KHR_composition_layer_color_scale_bias
+    XR_FB_color_space XR_EXT_hand_tracking XR_FB_swapchain_update_state XR_FB_swapchain_update_state_opengl_es
+    XR_FB_swapchain_update_state_vulkan XR_FB_foveation XR_FB_foveation_configuration
+    XR_FB_foveation_vulkan XR_FB_composition_layer_alpha_blend XR_KHR_composition_layer_depth
+    XR_KHR_composition_layer_cylinder XR_KHR_composition_layer_cube XR_KHR_composition_layer_equirect2
+    XR_KHR_convert_timespec_time XR_KHR_visibility_mask XR_FB_render_model XR_FB_spatial_entity
+    XR_FB_spatial_entity_query XR_FB_spatial_entity_storage XR_FB_keyboard_tracking
+    XR_FB_passthrough XR_FB_triangle_mesh XR_FB_passthrough_keyboard_hands XR_OCULUS_audio_device_guid
+    XR_FB_common_events XR_FB_space_warp XR_FB_hand_tracking_capsules XR_FB_hand_tracking_mesh
+    XR_FB_hand_tracking_aim '
+  company: Oculus
+  priority: 0
+  required: 0
 --- !u!114 &2203013472484016897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,6 +577,37 @@ MonoBehaviour:
   featureIdInternal: com.unity.openxr.feature.conformance
   openxrExtensionStrings: XR_EXT_conformance_automation
   company: Unity
+  priority: 0
+  required: 0
+--- !u!114 &4782563816264237269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1927c045052a06d49a9b21fdcaa26db6, type: 3}
+  m_Name: OculusXRFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: OculusXR Feature
+  version: 0.0.1
+  featureIdInternal: com.oculus.openxr.feature.oculusxr
+  openxrExtensionStrings: 'XR_KHR_vulkan_enable XR_KHR_D3D11_enable XR_OCULUS_common_reference_spaces
+    XR_FB_display_refresh_rate XR_EXT_performance_settings XR_FB_composition_layer_image_layout
+    XR_KHR_android_surface_swapchain XR_FB_android_surface_swapchain_create XR_KHR_composition_layer_color_scale_bias
+    XR_FB_color_space XR_EXT_hand_tracking XR_FB_swapchain_update_state XR_FB_swapchain_update_state_opengl_es
+    XR_FB_swapchain_update_state_vulkan XR_FB_foveation XR_FB_foveation_configuration
+    XR_FB_foveation_vulkan XR_FB_composition_layer_alpha_blend XR_KHR_composition_layer_depth
+    XR_KHR_composition_layer_cylinder XR_KHR_composition_layer_cube XR_KHR_composition_layer_equirect2
+    XR_KHR_convert_timespec_time XR_KHR_visibility_mask XR_FB_render_model XR_FB_spatial_entity
+    XR_FB_spatial_entity_query XR_FB_spatial_entity_storage XR_FB_keyboard_tracking
+    XR_FB_passthrough XR_FB_triangle_mesh XR_FB_passthrough_keyboard_hands XR_OCULUS_audio_device_guid
+    XR_FB_common_events XR_FB_space_warp XR_FB_hand_tracking_capsules XR_FB_hand_tracking_mesh
+    XR_FB_hand_tracking_aim '
+  company: Oculus
   priority: 0
   required: 0
 --- !u!114 &4845401280093732945
@@ -844,6 +906,7 @@ MonoBehaviour:
   - {fileID: -6296137939473434999}
   - {fileID: 6979678083238619868}
   - {fileID: -8491686047334267247}
+  - {fileID: 4782563816264237269}
   - {fileID: -4232453144372433196}
   m_renderMode: 1
   m_depthSubmissionMode: 0
@@ -893,6 +956,7 @@ MonoBehaviour:
   - {fileID: -4125168886299139475}
   - {fileID: -5952217416333005565}
   - {fileID: -4819347603216560108}
+  - {fileID: 2030642309462904655}
   - {fileID: -1410146013452928731}
   - {fileID: -2559850700645833631}
   - {fileID: -4917698214976262744}

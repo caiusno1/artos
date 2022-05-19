@@ -5,6 +5,8 @@ using UnityEngine;
 public enum StateMachine
 {
     Preparation,
+    WaitForStart,
+    StartFired,
     Tutorial,
     TOJ_READY,
     TOJ_EVAL,

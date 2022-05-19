@@ -8,7 +8,7 @@ namespace Assets.Scripts
 {
     public class TOJResult
     {
-        public int id;
+        public int participant_id;
         public int timestamp;
         public string result;
     }

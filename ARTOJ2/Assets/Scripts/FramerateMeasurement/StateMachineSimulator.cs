@@ -29,7 +29,11 @@ public class StateMachineSimulator : MonoBehaviour
             {
                 ctrl = ExperimentController.GetInstance();
             }
-            if(ctrl.state == StateMachine.TOJ_EVAL)
+            if (ctrl.state == StateMachine.WaitForStart)
+            {
+                ctrl.state = StateMachine.StartFired;
+            }
+            else if (ctrl.state == StateMachine.TOJ_EVAL)
             {
                 ctrl.LeftBtnHandler();
             }

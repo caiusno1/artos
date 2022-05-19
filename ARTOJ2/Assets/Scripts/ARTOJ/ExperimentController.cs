@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class ExperimentController : MonoBehaviour
 {
+    public PlatformCondition platformCondition;
+    //public string Condition;
     public ExperimentalSetup currentSetup;
     public List<Dictionary<string, object>> runtimeSetup;
     public List<GameObject> ExperimentalPositions;
@@ -27,6 +29,10 @@ public class ExperimentController : MonoBehaviour
     private bool tutorialMode = true;
     //private bool InputEnabled = false;
     public StateMachine state = StateMachine.Preparation;
+    [HideInInspector]
+    public float lastSOADuration = 0;
+    [HideInInspector]
+    public List<TrialInfo> trialLog = new List<TrialInfo>();
     private void Awake()
     {
         if(Instance == null)
@@ -124,12 +130,6 @@ public class ExperimentController : MonoBehaviour
             rightBtn = ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].GetComponentInChildren<TOJGrid>().rightBtn;
             leftBtn.AddListener(LeftBtnHandler);
             rightBtn.AddListener(RightBtnHandler);
-            //this.InputEnabled = false;
-            this.state = StateMachine.Tutorial;
-            StartCoroutine(ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].GetComponentInChildren<TOJGrid>().StartSingleExperiment(this.runtimeSetup[currentPosition], () => {
-                //this.InputEnabled = true;
-                this.state = StateMachine.TOJ_EVAL;
-            }));
         }
     }
     void Update()
@@ -143,6 +143,20 @@ public class ExperimentController : MonoBehaviour
         {
             RightBtnHandler();
         }
+        if(state == StateMachine.StartFired)
+        {
+            var trial = new TrialInfo();
+            if ((this.runtimeSetup[currentPosition + 1]["SOA"] is float csoa))
+            {
+                trial.soa = (int)csoa;
+            }
+            trialLog.Add(trial);
+            this.state = StateMachine.Tutorial;
+            StartCoroutine(ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].GetComponentInChildren<TOJGrid>().StartSingleExperiment(this.runtimeSetup[currentPosition], () => {
+                //this.InputEnabled = true;
+                this.state = StateMachine.TOJ_EVAL;
+            }));
+        }
     }
     public void LeftBtnHandler()
     {
@@ -153,11 +167,16 @@ public class ExperimentController : MonoBehaviour
         if(this.runtimeSetup[this.currentPosition].ContainsKey("Mode") && this.runtimeSetup[this.currentPosition]["Mode"] == "Tutorial")
         {
             Debug.Log("Tutorial");
+            trialLog.Last().mode = "tutorial";
         } 
         else
         {
             Debug.Log("Real Data");
-            sendResult(result, result, probeSelected);
+            trialLog.Last().mode = "real";
+            trialLog.Last().soaDuration = lastSOADuration;
+            trialLog.Last().leftLast = result;
+            trialLog.Last().TOJFeedback = result;
+            trialLog.Last().probeFirstSelected = probeSelected;
         }
 
         PlayFeedbackSound(result);
@@ -188,7 +207,10 @@ public class ExperimentController : MonoBehaviour
         else 
         {
             Debug.Log("Real Data");
-            sendResult(!result, result, probeSelected);
+            trialLog.Last().soaDuration = lastSOADuration;
+            trialLog.Last().leftLast = !result;
+            trialLog.Last().TOJFeedback = result;
+            trialLog.Last().probeFirstSelected = probeSelected;
         }
 
         PlayFeedbackSound(result);
@@ -213,6 +235,12 @@ public class ExperimentController : MonoBehaviour
     {
         if(this.currentPosition < runtimeSetup.Count - 1)
         {
+            var trial = new TrialInfo();
+            if ((this.runtimeSetup[currentPosition + 1]["SOA"] is float csoa))
+            {
+                trial.soa = (int)csoa;
+            }
+            trialLog.Add(trial);
             ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].transform.GetChild(0).gameObject.SetActive(false);
             this.currentPosition++;
             ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].transform.GetChild(0).gameObject.SetActive(true);
@@ -247,17 +275,22 @@ public class ExperimentController : MonoBehaviour
 
     }
 
-    public void sendResult(bool leftLast, bool feedback, bool probeSelected)
+    public void sendResult()
     {
-        var jsonContent = "{'leftLast':"+leftLast+",'feedback':"+feedback+", 'soa':'"+ this.runtimeSetup[currentPosition]["SOA"] + "', 'probeFirstSelected':'" + probeSelected + "'}";
+        var jsonContent = this.trialLog.Last().toJSON();
         Debug.Log(jsonContent);
         var result = new TOJResult();
-        result.id = 0;
+        result.participant_id = 0;
         result.timestamp = this.timeStamp;
         result.result = jsonContent;
         results.Add(result);
-        var jsonifiedList = results.Select((res) => JsonUtility.ToJson(res));
-        UnityWebRequest www = UnityWebRequest.Put("http://localhost:8000/results/?code=dg4fk%24%23385g9%23%3B0j%C3%9Fh%23%23s(7d%23%230gfh", "["+ String.Join(",",jsonifiedList) +"]");
+        var jsonifiedList = results.Select((res) => { 
+            string baseStr = JsonUtility.ToJson(res);
+            baseStr = baseStr.Substring(0, baseStr.Length - 1) + ",\"experiment\":{\"ID\":1}}";
+            return baseStr;
+        });
+        Debug.Log("[" + String.Join(",", jsonifiedList) + "]");
+        UnityWebRequest www = UnityWebRequest.Put("https://artosapi.kai-biermeier.de/results?code=dg4fk%24%23385g9%23%3B0j%C3%9Fh%23%23s(7d%23%230gfh", "["+ String.Join(",",jsonifiedList) +"]");
         www.SetRequestHeader("Content-Type", "application/json");
         var webReq = www.SendWebRequest();
 

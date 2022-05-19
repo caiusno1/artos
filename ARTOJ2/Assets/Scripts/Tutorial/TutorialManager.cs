@@ -7,12 +7,13 @@ public class TutorialManager : MonoBehaviour
 {
     public Canvas CounterCanvas;
     public TextMeshProUGUI CounterText;
+    public GameObject startBtn;
     public int BigCounter;
     public int SmallCounter = 3;
     // Start is called before the first frame update
     void Start()
     {
-        CounterText.text = "   " + SmallCounter;
+        
     }
 
     // Update is called once per frame
@@ -38,5 +39,12 @@ public class TutorialManager : MonoBehaviour
             }
         }
 
+    }
+    public void OnStartFired()
+    {
+        CounterCanvas.gameObject.SetActive(true);
+        Destroy(startBtn);
+        CounterText.text = "   " + SmallCounter;
+        ExperimentController.GetInstance().state = StateMachine.StartFired;
     }
 }

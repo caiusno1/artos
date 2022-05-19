@@ -30,6 +30,7 @@ public class DefaultFlicker : MonoBehaviour
         {
             if (FrameIdx == 0)
             {
+                ExperimentController.GetInstance().lastSOADuration = 0;
                 if (SOA_IN_FRAMES < 0)
                 {
                     probeHidable.active = false;
@@ -63,9 +64,15 @@ public class DefaultFlicker : MonoBehaviour
                 }
             }
 
+            if(FrameIdx > 0 && FrameIdx <= POSITIVE_SOA_IN_FRAMES)
+            {
+                ExperimentController.GetInstance().lastSOADuration += Time.deltaTime;
+            }
+
 
             if (FrameIdx == POSITIVE_SOA_IN_FRAMES)
             {
+                
                 if (SOA_IN_FRAMES < 0)
                 {
                     refHidable.active = false;

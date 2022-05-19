@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -37,7 +38,7 @@ public class TOJGrid : MonoBehaviour
 
     private List<List<Material>> memoryColor = new List<List<Material>>();
 
-    private List<List<string>> memoryLable = new List<List<string>>();
+    private List<List<int>> memoryLable = new List<List<int>>();
 
     public List<Material> colorsInput;
 
@@ -66,7 +67,7 @@ public class TOJGrid : MonoBehaviour
         stimuli = new List<List<GameObject>>();
         stimuli.Add(new List<GameObject>());
         memoryColor.Add(new List<Material>());
-        memoryLable.Add(new List<string>());
+        memoryLable.Add(new List<int>());
         var iteratorVar = 0;
         foreach (Transform child in this.stimuliHolder.transform)
         {
@@ -74,7 +75,7 @@ public class TOJGrid : MonoBehaviour
             var color = colors[iteratorVar];
             memoryColor[idx2].Add(color);
             child.gameObject.name = "" + colorsInput.IndexOf(color);
-            memoryLable[idx2].Add("" + iteratorVar);
+            memoryLable[idx2].Add(colorsInput.IndexOf(color));
             var tojGrid = this;
             var btnProxy = child.GetComponent<ButtonProxy>();
             btnProxy.AddListener(new ButtonMemoryAction(child,this,color, child.gameObject.name).getListener);
@@ -85,7 +86,7 @@ public class TOJGrid : MonoBehaviour
                 idx2++;
                 stimuli.Add(new List<GameObject>());
                 memoryColor.Add(new List<Material>());
-                memoryLable.Add(new List<string>());
+                memoryLable.Add(new List<int>());
             }
             iteratorVar++;
         }
@@ -189,6 +190,16 @@ public class TOJGrid : MonoBehaviour
         if(ExperimentController.GetInstance().state == StateMachine.MemoryEvaluate)
         {
             ExperimentController.GetInstance().state = StateMachine.MemoryDelayBeforeTOJ;
+            ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].firstSelectedPosition = tojGrid.firstCardGO.transform.GetSiblingIndex();
+            ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].secondSelectedPosition = tojGrid.secondCardGO.transform.GetSiblingIndex();
+            var board =  new int[4][];
+            board[0] = memoryLable[0].ToArray();
+            board[1] = memoryLable[1].ToArray();
+            board[2] = memoryLable[2].ToArray();
+            board[3] = memoryLable[3].ToArray();
+            ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].boardPositions = board;
+
+            ExperimentController.GetInstance().sendResult();
             yield return new WaitForSeconds(1);
             if (tojGrid.firstCardID.Equals(tojGrid.secondCardID))
             {
