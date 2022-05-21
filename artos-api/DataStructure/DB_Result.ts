@@ -9,7 +9,7 @@ export class DB_Result implements IResult{
     public ID!: number;
     @Column()
     public timestamp!: number;
-    @Column("varchar", { length: 5000 })
+    @Column("longtext")
     public result!: string;
     @Column()
     public participant_id!: string;
