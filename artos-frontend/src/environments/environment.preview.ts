@@ -3,8 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  devEnvironment: false,
   production: true,
   domain:"localhost",
+  devJuypterDomain:"kai-biermeier.de",
   name:"preview"
 };
 

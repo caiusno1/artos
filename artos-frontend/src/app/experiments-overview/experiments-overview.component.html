@@ -1,6 +1,4 @@
 <mat-tab-group>
-  <mat-tab label="Experiment 1"><app-experiment-view></app-experiment-view> </mat-tab>
-  <!--<mat-tab label="Experiment 2"> <app-experiment-view></app-experiment-view> </mat-tab>-->
-  <!--<mat-tab label="Experiment 3"> <app-experiment-view></app-experiment-view> </mat-tab>-->
+  <mat-tab *ngFor="let item of experiments" label="Experiment {{item}}"><app-experiment-view [experimentID]="item"></app-experiment-view></mat-tab>
 </mat-tab-group>
 

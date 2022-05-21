@@ -1,7 +1,8 @@
+import { environment } from 'src/environments/environment';
 import { ExperimentalResult } from './../resultService/ExperimentalResult';
 import { BehaviorSubject } from 'rxjs';
 import { ResultService } from './../resultService/result.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-experiment-view',
@@ -9,6 +10,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./experiment-view.component.scss']
 })
 export class ExperimentViewComponent implements OnInit {
+  @Input() experimentID!: number;
+  public participant_id:string = "";
+  public condition_id:string = "";
   displayedColumns: string[] = ['participant_id','timestamp','result','delete'];
   dataSource = new BehaviorSubject<ExperimentalResult[]>([{participant_id:0,result:"a",timestamp:"b"}])
 
@@ -22,6 +26,19 @@ export class ExperimentViewComponent implements OnInit {
     this.resServ.deleteResult(e).then((data) => {
       this.dataSource.next(data)
     })
+  }
+  public generateNotebook(){
+    const cnd = this.condition_id.split(" ")
+    const pID = this.participant_id
+    this.resServ.createJuypterNotebook(this.experimentID,pID,cnd)
+  }
+  public openNotebook(){
+    if(environment.devEnvironment){
+      window.open(`https://jupyter.kai-biermeier.de/lab/tree/artos/experiments/experiment${this.experimentID}/notebook.ipynb`, '_blank');
+    }
+    else {
+      window.open(`https://jupyter.${environment.domain}/lab/tree/artos/experiments/experiment${this.experimentID}/notebook.ipynb`, '_blank');
+    }
   }
 
   ngOnInit(): void {

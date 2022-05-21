@@ -11,10 +11,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  private concatedDomain: string = "localhost"
   // tslint:disable-next-line:variable-name
   private _username: string | undefined;
   public createUser(email: string, name: string, password: string, age: number, job: string,hobbies: string, aboutMe: string) {
-    return this.http.post(`https://artosapi.${environment.domain}/register`,
+    return this.http.post(`${this.concatedDomain}/register`,
     {email, name, password})
     .toPromise()
     .then((res) => {
@@ -25,7 +26,14 @@ export class AuthService {
     .catch((err) => Promise.reject());
   }
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+    if(!environment.devEnvironment){
+      this.concatedDomain = `https://artosapi.${environment.domain}`
+    }
+    else {
+      this.concatedDomain = `http://${environment.domain}`
+    }
+  }
 
   public isAuthenticated(): boolean {
     const userData = localStorage.getItem('id_token');
@@ -47,7 +55,7 @@ export class AuthService {
   }
 
   public validate(username:string, password:string) {
-    return this.http.post(`https://artosapi.${environment.domain}/authenticate`, {username, password })
+    return this.http.post(`${this.concatedDomain}/authenticate`, {username, password })
     .toPromise()
     .then((valid) => {
 

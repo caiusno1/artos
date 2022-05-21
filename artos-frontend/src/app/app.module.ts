@@ -18,6 +18,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatFormFieldModule,
     MatCardModule,
     MatIconModule,
+    MatSelectModule,
+    MatButtonModule
   ],
   providers: [
     AuthService,
