@@ -1,3 +1,4 @@
+import { DB_Participant } from './DB_Participant';
 import { DB_Experiment } from './DB_Experiment';
 import { Connection, createConnection } from "typeorm";
 import { DB_ARTOS_Error } from "./DB_ARTOS_Error";
@@ -26,7 +27,8 @@ export class DataBaseService{
                 entities: [
                     DB_Result,
                     DB_ARTOS_Error,
-                    DB_Experiment
+                    DB_Experiment,
+                    DB_Participant
                 ],
                 synchronize: true,
                 logging: false

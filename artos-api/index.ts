@@ -4,7 +4,7 @@ import express from 'express';
 import "reflect-metadata";
 import { errorsRouter } from './RestAPI/errors';
 import { experimentsRouter } from './RestAPI/experiments';
-import { participantsRouter } from './RestAPI/participants';
+import { participantsRouter } from './RestAPI/participant';
 import { resultsRouter } from './RestAPI/results';
 import * as config from "./config/config.json"
 import passport from 'passport'
@@ -43,7 +43,7 @@ DataBaseService.getInstance().then(dbServ => {
     // experiment routes
     app.use('/experiments', experimentsRouter)
     // participant routes
-    app.use('/participants', passport.authenticate(['token', 'jwt'], {session: false}) , participantsRouter)
+    app.use('/participant', participantsRouter)
     // result routes
     app.use('/results', resultsRouter)
      // jupyter route
