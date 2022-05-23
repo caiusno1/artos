@@ -1,6 +1,10 @@
 import { Router } from "express";
 import { exec } from "child_process";
 import { existsSync, mkdirSync, writeFileSync} from "fs";
+import { DataBaseService } from "../DataStructure/DataBaseService";
+import { returnOnFailure } from "../helpers/returnOnFailure";
+import { DB_Result } from "../DataStructure/DB_Result";
+import { json2csv } from "json-2-csv";
 
 const jupyterRouter = Router()
 
@@ -8,10 +12,22 @@ jupyterRouter.put('/', async function(req, res) {
     const ID = req.body.expermimentID
     const participantID = req.body.participantID
     const conditionIDs = req.body.conditionIDs
+    const dbServ = await DataBaseService.getInstance()
+    if(!returnOnFailure(dbServ,req,res)){return}
     if(Number.isNaN(Number.parseInt(ID))){
       res.send("error")
       return
     }
+    const artosResultRepo = dbServ.connection.getRepository(DB_Result)
+    const results = await artosResultRepo.find({experiment:ID})
+    const data :string = await new Promise((res,rej) => {
+      json2csv(results, (err,csv) => {
+        if(err) rej("")
+        else if(!csv) res("")
+        else if(csv) res(csv)
+      })
+    })
+    console.log(data)
     try {
         const folderAsList = __dirname.split("/")
         folderAsList.pop();
@@ -23,7 +39,7 @@ jupyterRouter.put('/', async function(req, res) {
           mkdirSync(folder+`/jupyter/experiments/experiment${ID}/`);
         }
 
-        writeFileSync(folder+`/jupyter/experiments/experiment${ID}/data.csv`,"")
+        writeFileSync(folder+`/jupyter/experiments/experiment${ID}/data.csv`,data)
         writeFileSync(folder+`/jupyter/experiments/experiment${ID}/notebook.ipynb`, 
         `{
           "cells": [

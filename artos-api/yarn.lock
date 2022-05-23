@@ -492,6 +492,11 @@
   dependencies:
     "mimic-response" "^1.0.0"
 
+"deeks@2.5.1":
+  "integrity" "sha512-fqrBeUz7f1UqaXDRzVB5RG2EfPk15HJRrb2pMZj8mLlSTtz4tRPsK5leFOskoHFPuyZ6+7aRM9j657fvXLkJ7Q=="
+  "resolved" "https://registry.npmjs.org/deeks/-/deeks-2.5.1.tgz"
+  "version" "2.5.1"
+
 "deep-extend@^0.6.0":
   "integrity" "sha512-LOHxIOaPYdHlJRtCQfDIVZtfw/ufM8+rVj649RIHzcm/vGwQRXFt6OPqIFWsm2XEMrNIEtWR64sY1LEKD2vAOA=="
   "resolved" "https://registry.npmjs.org/deep-extend/-/deep-extend-0.6.0.tgz"
@@ -521,6 +526,11 @@
   "integrity" "sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A=="
   "resolved" "https://registry.npmjs.org/diff/-/diff-4.0.2.tgz"
   "version" "4.0.2"
+
+"doc-path@3.0.2":
+  "integrity" "sha512-VRlA2OKSjTbHWj6wmSanxJ338fE/YN8pqmZ0FIWK5JWkIJMFRc4KmD35JtOrnjvVG0WrzOtDDNHx1lN1tkb+lA=="
+  "resolved" "https://registry.npmjs.org/doc-path/-/doc-path-3.0.2.tgz"
+  "version" "3.0.2"
 
 "dot-prop@^5.2.0":
   "integrity" "sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q=="
@@ -927,6 +937,14 @@
   "version" "4.1.0"
   dependencies:
     "argparse" "^2.0.1"
+
+"json-2-csv@^3.17.1":
+  "integrity" "sha512-i6QynVy42GGMgY8fYde0mp6nYteptvk8oJsphOLiT3CITzw7NBBAiRwHV35kDOBii/elDQe1HCWLqaBPJ3istQ=="
+  "resolved" "https://registry.npmjs.org/json-2-csv/-/json-2-csv-3.17.1.tgz"
+  "version" "3.17.1"
+  dependencies:
+    "deeks" "2.5.1"
+    "doc-path" "3.0.2"
 
 "json-buffer@3.0.0":
   "integrity" "sha1-Wx85evx11ne96Lz8Dkfh+aPZqJg="
