@@ -1,5 +1,12 @@
 <mat-card>
   <mat-card-title>Settings</mat-card-title>
+  <mat-card-subtitle>Runtime State</mat-card-subtitle>
+  <mat-form-field appearance="outline">
+    <mat-label>Current Participant Number</mat-label>
+    <input matInput #currentParticipantField [value]="currentParticipant">
+  </mat-form-field>
+  <button mat-raised-button class="experimentSettingsBtn" (click)="updateParticipant(currentParticipantField.value)">updateParticipant</button>
+  <br>
   <mat-card-subtitle>Data Mapping</mat-card-subtitle>
   <mat-form-field appearance="outline" (value)="participant_id">
     <mat-label>Participant Variable Name</mat-label>
@@ -23,7 +30,8 @@
       <mat-option value="Uniform">Uniform</mat-option>
       <mat-option value="Uniform">Custom (not implemented)</mat-option>
     </mat-select>
-  </mat-form-field><br>
+  </mat-form-field>
+  <br>
   <button mat-raised-button class="experimentSettingsBtn" (click)="generateNotebook()">Generate Notebook</button>
   <button mat-raised-button class="experimentSettingsBtn" (click)="openNotebook()">Open Notebook</button>
 </mat-card>
