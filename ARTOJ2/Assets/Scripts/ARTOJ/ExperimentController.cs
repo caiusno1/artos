@@ -297,18 +297,6 @@ public class ExperimentController : MonoBehaviour
         
     }
 
-    private void ExperimentController_completed(UnityWebRequestAsyncOperation obj)
-    {
-        if (obj.webRequest.result != UnityWebRequest.Result.Success)
-        {
-            Debug.Log(obj.webRequest.error);
-        }
-        else
-        {
-            Debug.Log("Data upload complete!");
-        }
-    }
-
     public bool CheckUserResult(bool LeftLast)
     {
         float soa = 0.1f;

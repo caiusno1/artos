@@ -19,7 +19,7 @@ public class TOJGrid : MonoBehaviour
     public ImageTargetBehaviour target;
 #endif
     // public bool TOJ_ready = false;
-    public Material defaultBackPlate;
+    public Sprite defaultBackPlate;
     [HideInInspector]
     public bool StateSet = false;
     [HideInInspector]
@@ -36,13 +36,13 @@ public class TOJGrid : MonoBehaviour
 
     public List<List<GameObject>> stimuli = new List<List<GameObject>>();
 
-    private List<List<Material>> memoryColor = new List<List<Material>>();
+    private List<List<Sprite>> memoryColor = new List<List<Sprite>>();
 
     private List<List<int>> memoryLable = new List<List<int>>();
 
-    public List<Material> colorsInput;
+    public List<Sprite> colorsInput;
 
-    public List<Material> colors;
+    public List<Sprite> colors;
 
     // public bool memoryTurnNow = false;
     // public bool firstCard = true;
@@ -53,10 +53,12 @@ public class TOJGrid : MonoBehaviour
     private string firstCardID;
     private string secondCardID;
 
+    private int closedCards = 24;
+
 
     void Start()
     {
-        colors = new List<Material>();
+        colors = new List<Sprite>();
         colors.AddRange(colorsInput);
         colors.AddRange(colors);
         colors.Shuffle();
@@ -66,7 +68,7 @@ public class TOJGrid : MonoBehaviour
         int idx2 = 0;
         stimuli = new List<List<GameObject>>();
         stimuli.Add(new List<GameObject>());
-        memoryColor.Add(new List<Material>());
+        memoryColor.Add(new List<Sprite>());
         memoryLable.Add(new List<int>());
         var iteratorVar = 0;
         foreach (Transform child in this.stimuliHolder.transform)
@@ -85,7 +87,7 @@ public class TOJGrid : MonoBehaviour
                 idx = 0;
                 idx2++;
                 stimuli.Add(new List<GameObject>());
-                memoryColor.Add(new List<Material>());
+                memoryColor.Add(new List<Sprite>());
                 memoryLable.Add(new List<int>());
             }
             iteratorVar++;
@@ -121,9 +123,9 @@ public class TOJGrid : MonoBehaviour
             refX = UnityEngine.Random.Range(0, xaxisLength - 1);
             refY = UnityEngine.Random.Range(0, yaxisLength - 1);
         }
-        while (refX == probeX);
+        while (refX == probeX || memoryLable[refY][refX] == memoryLable[probeY][probeX]);
 
-        experimentalManipulation(probeX, probeY, refX, refY);
+        //experimentalManipulation(probeX, probeY, refX, refY);
 
         this.probeIsLeft = probeX < refX;
 
@@ -205,19 +207,26 @@ public class TOJGrid : MonoBehaviour
             {
                 tojGrid.firstCardGO.GetComponent<ButtonProxy>().RemoveAllListeners();
                 tojGrid.secondCardGO.GetComponent<ButtonProxy>().RemoveAllListeners();
+                closedCards--;
+                closedCards--;
+                if (closedCards <= 2)
+                {
+                    foreach(var stimulusRow in stimuli){
+                        foreach(var stimulus in stimulusRow)
+                        {
+                            var stimulusMeshRenderer = stimulus.GetComponentInChildren<SpriteRenderer>();
+                            stimulusMeshRenderer.sprite = defaultBackPlate;
+                        }
+                    }
+                }
                 Debug.Log("Memory Correct");
             }
             else
             {
-                var firstCardMeshRenderer = tojGrid.firstCardGO.transform.Find("BackPlate").GetChild(0).GetComponent<MeshRenderer>();
-                var secondCardMeshRenderer = tojGrid.secondCardGO.transform.Find("BackPlate").GetChild(0).GetComponent<MeshRenderer>();
-                firstCardMeshRenderer.material = defaultBackPlate;
-                secondCardMeshRenderer.material = defaultBackPlate;
-
-                firstCardMeshRenderer.enabled = false;
-                firstCardMeshRenderer.enabled = true;
-                secondCardMeshRenderer.enabled = false;
-                secondCardMeshRenderer.enabled = true;
+                var firstCardMeshRenderer = tojGrid.firstCardGO.GetComponentInChildren<SpriteRenderer>();
+                var secondCardMeshRenderer = tojGrid.secondCardGO.GetComponentInChildren<SpriteRenderer>();
+                firstCardMeshRenderer.sprite = defaultBackPlate;
+                secondCardMeshRenderer.sprite = defaultBackPlate;
                 Debug.Log("Memory Wrong");
             }
             tojGrid.secondCardGO = null;
@@ -232,9 +241,9 @@ public class TOJGrid : MonoBehaviour
     {
         private TOJGrid tOJGrid;
         private Transform btn;
-        private Material color;
+        private Sprite color;
         private string lable;
-        public ButtonMemoryAction(Transform btn, TOJGrid tojGrid, Material color , string lable)
+        public ButtonMemoryAction(Transform btn, TOJGrid tojGrid, Sprite color , string lable)
         {
             this.tOJGrid = tojGrid;
             this.btn = btn;
@@ -260,10 +269,10 @@ public class TOJGrid : MonoBehaviour
 
                 if (ExperimentController.GetInstance().state == StateMachine.MemoryChoseFirst || ExperimentController.GetInstance().state == StateMachine.MemoryChooseSecond)
             {
-                var meshRenderer = btn.transform.Find("BackPlate").GetChild(0).GetComponent<MeshRenderer>();
-                meshRenderer.material = color;
-                meshRenderer.enabled = false;
-                meshRenderer.enabled = true;
+                var spriteRenderer = btn.GetComponentInChildren<SpriteRenderer>();
+                spriteRenderer.sprite = color;
+                spriteRenderer.enabled = false;
+                spriteRenderer.enabled = true;
             }
 
             if (ExperimentController.GetInstance().state == StateMachine.MemoryChoseFirst)

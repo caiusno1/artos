@@ -117,7 +117,7 @@ public class DefaultFlicker : MonoBehaviour
     }
     private GameObject GetHideable(GameObject go)
     {
-        return go.transform.Find("BackPlate").gameObject;
+        return go.GetComponentInChildren<SpriteRenderer>().gameObject;
     }
     public bool HasFinishedTOJ()
     {
