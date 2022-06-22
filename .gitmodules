@@ -1,0 +1,3 @@
+[submodule "TOJ-Implementations/ARTOJ/Assets/artos-core"]
+	path = TOJ-Implementations/ARTOJ/Assets/artos-core
+	url = git@github.com:caiusno1/artos-core.git

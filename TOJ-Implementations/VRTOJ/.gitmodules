@@ -1,0 +1,3 @@
+[submodule "Assets/artos-core"]
+	path = Assets/artos-core
+	url = git@github.com:caiusno1/artos-core.git
