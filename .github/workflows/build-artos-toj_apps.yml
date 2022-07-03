@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    name: Build my project
+    name: Build ARTOS TOJs
     runs-on: ubuntu-latest
     steps:
       # Checkout
@@ -19,14 +19,6 @@ jobs:
         run: |
           eval `ssh-agent -s`
           ssh-add - <<< "${SSH_KEY_SUBMODULE}"; git submodule update --init --recursive
-      
-      #- name: clone submodule
-      #  uses: actions/checkout@v2
-      #  with:
-      #    repository: caiusno1/artos-core
-      #    path: TOJ-Implementations/ARTOJ/Assets/artos-core
-      #    ssh-key: ${{ secrets.SUBMODULE_SSH_KEY }}
-      #    persist-credentials: false
 
       # Cache
       #- uses: actions/cache@v2
@@ -37,23 +29,23 @@ jobs:
       #      Library-
 
       # Build
-      #- name: Build VRTOJ
-      #  uses: game-ci/unity-builder@v2
-      #  env:
-      #    UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
-      #    UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-      #    UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-      #  with:
-      #    projectPath: TOJ-Implementations/VRTOJ
-      #    targetPlatform: Android
+      - name: Build VRTOJ
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: TOJ-Implementations/VRTOJ
+          targetPlatform: Android
 
       # Output
-      #- uses: actions/upload-artifact@v2
-      #  with:
-      #    name: Build
-      #    path: build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: Build
+          path: build
 
       # Return License
-      #- name: Return license
-      #  uses: game-ci/unity-return-license@v2
-      #  if: always()
+      - name: Return license
+        uses: game-ci/unity-return-license@v2
+        if: always()
