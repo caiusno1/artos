@@ -21,12 +21,19 @@ jobs:
           ssh-add - <<< "${SSH_KEY_SUBMODULE}"; git submodule update --init --recursive
 
       # Cache
-      #- uses: actions/cache@v2
-      #  with:
-      #    path: TOJ-Implementations/VRTOJ/Library
-      #    key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-      #    restore-keys: |
-      #      Library-
+      - uses: actions/cache@v2
+        with:
+          path: TOJ-Implementations/VRTOJ/Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
+      # Cache
+      - uses: actions/cache@v2
+        with:
+          path: TOJ-Implementations/ARTOJ/Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
 
       # Build
       - name: Build VRTOJ
@@ -49,3 +56,15 @@ jobs:
       - name: Return license
         uses: game-ci/unity-return-license@v2
         if: always()
+  winbuild:
+    name: Build for HoloLens
+    runs-on: windows-2019
+    strategy:
+      fail-fast: false
+      matrix:
+        projectPath:
+          - TOJ-Implementations/ARTOJ
+        unityVersion:
+          - 2020.2.1f1
+        targetPlatform:
+          - WSAPlayer # Build a UWP App.
