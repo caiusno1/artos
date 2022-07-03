@@ -7,6 +7,8 @@ export class DB_Result implements IResult{
 
     @PrimaryGeneratedColumn('increment')
     public ID!: number;
+    @PrimaryColumn()
+    public trialUID!: number;
     @Column()
     public timestamp!: number;
     @Column("longtext")

@@ -11,7 +11,7 @@ const resultsRouter = Router()
 let tmpStore:IResult[][] = []
 
 function resultEquals(a:IResult, b: IResult){
-    return a.participant_id === b.participant_id && a.timestamp === b.timestamp && a.result === b.result && a.experiment === b.experiment
+    return a.trialUID === b.trialUID
 }
 
 
@@ -41,7 +41,8 @@ resultsRouter.delete('/',passport.authenticate(['token', 'jwt'], {session: false
     if(!returnOnFailure(dbServ,req,res)){return}
     if(!returnOnFailure(req.body,req,res)){return}
     const artosResultRepo = dbServ.connection.getRepository(DB_Result)
-    const artosResults = await artosResultRepo.remove(req.body)
+    const resultsToDelete = await artosResultRepo.find(req.body)
+    const artosResults = await artosResultRepo.remove(resultsToDelete)
     res.send({status:"ok"})
 });
 
@@ -55,7 +56,12 @@ resultsRouter.put('/', passport.authenticate(['token', 'jwt']), async function(r
     if(!returnOnFailure(artosResultRepo,req,res)){return}
     const artosExperimemtRepo = dbServ.connection.getRepository(DB_Experiment)
     if(!returnOnFailure(artosExperimemtRepo,req,res)){return}
-    const artosResults = await artosResultRepo.find({participant_id:req.body[0].id, timestamp:req.body[0].id})
+    if(!returnOnFailure(req.body,req,res)){return}
+    if(!returnOnFailure(req?.body[0]?.experiment?.ID,req,res)){return}
+    const exp = await artosExperimemtRepo.findOne({ID:(req.body[0] as IResult).experiment.ID})
+    const artosResults = await artosResultRepo.find({participant_id:req.body[0].participant_id, timestamp:req.body[0].timestamp, experiment: exp})
+
+    
     for(let result of req.body){
         if(artosResults.filter((sRes) => resultEquals(result,sRes)).length === 0 )
         {
@@ -63,6 +69,7 @@ resultsRouter.put('/', passport.authenticate(['token', 'jwt']), async function(r
             const experiment = await artosExperimemtRepo.findOne({ID:id});
             if(!returnOnFailure(experiment,req,res)){return}
             result.experiment = experiment;
+            console.log(result)
             artosResultRepo.save(result);
         }
     }

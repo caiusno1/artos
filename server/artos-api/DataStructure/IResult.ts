@@ -4,4 +4,5 @@ export interface IResult{
     result: string
     participant_id: string
     experiment: DB_Experiment
+    trialUID: number
 }
