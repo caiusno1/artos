@@ -27,16 +27,9 @@ jobs:
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-
-      # Cache
-      - uses: actions/cache@v2
-        with:
-          path: TOJ-Implementations/ARTOJ/Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-          restore-keys: |
-            Library-
 
       # Build
-      - name: Build VRTOJ
+      - name: Build ARTOJ
         uses: game-ci/unity-builder@v2
         env:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
@@ -76,27 +69,20 @@ jobs:
       # Cache
       - uses: actions/cache@v2
         with:
-          path: TOJ-Implementations/VRTOJ/Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-          restore-keys: |
-            Library-
-      # Cache
-      - uses: actions/cache@v2
-        with:
           path: TOJ-Implementations/ARTOJ/Library
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-
 
       # Build
-      - name: Build VRTOJ
+      - name: Build ARTOJ
         uses: game-ci/unity-builder@v2
         env:
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
-          projectPath: TOJ-Implementations/VRTOJ
+          projectPath: TOJ-Implementations/ARTOJ
           targetPlatform: Android
 
       # Output
