@@ -12,7 +12,24 @@ jobs:
         uses: actions/checkout@v2
         with:
           lfs: true
-          submodules: recursive
+
+      - name: clone submodule
+        uses: actions/checkout@v2
+        with:
+          repository: caiusno1/artos-core
+          path: TOJ-Implementations/VRTOJ/Assets/artos-core
+          ref: v2
+          ssh-key: ${{ secrets.SUBMODULE_SSH_KEY }}
+          persist-credentials: false
+      
+      - name: clone submodule
+        uses: actions/checkout@v2
+        with:
+          repository: caiusno1/artos-core
+          path: TOJ-Implementations/ARTOJ/Assets/artos-core
+          ref: v2
+          ssh-key: ${{ secrets.SUBMODULE_SSH_KEY }}
+          persist-credentials: false
 
       # Cache
       - uses: actions/cache@v2
