@@ -12,21 +12,13 @@ jobs:
         uses: actions/checkout@v2
         with:
           lfs: true
-          ssh-key: ${{ secrets.SUBMODULE_SSH_KEY }}
-          submodules: true
 
-      - name: clone submodule
-        uses: actions/checkout@v2
-        with:
-          repository: caiusno1/artos-core
-          path: TOJ-Implementations/VRTOJ/Assets/artos-core
-          ssh-key: ${{ secrets.SUBMODULE_SSH_KEY }}
-          persist-credentials: true
-
-      #- name: checkout submodule
-      #  run: |
-      #    git submodule init
-      #    git submodule update
+      - name: Get submodules
+        env:
+          SSH_KEY_SUBMODULE: ${{secrets.SUBMODULE_SSH_KEY}}
+        run: |
+          eval `ssh-agent -s`
+          ssh-add - <<< "${SSH_KEY_SUBMODULE}"; git submodule update --init --recursive
       
       #- name: clone submodule
       #  uses: actions/checkout@v2
