@@ -12,6 +12,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           lfs: true
+          ssh-key: ${{ secrets.SUBMODULE_SSH_KEY }}
+          submodules: true
 
       - name: clone submodule
         uses: actions/checkout@v2
@@ -43,23 +45,23 @@ jobs:
       #      Library-
 
       # Build
-      - name: Build VRTOJ
-        uses: game-ci/unity-builder@v2
-        env:
-          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          projectPath: TOJ-Implementations/VRTOJ
-          targetPlatform: Android
+      #- name: Build VRTOJ
+      #  uses: game-ci/unity-builder@v2
+      #  env:
+      #    UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+      #    UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+      #    UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+      #  with:
+      #    projectPath: TOJ-Implementations/VRTOJ
+      #    targetPlatform: Android
 
       # Output
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Build
-          path: build
+      #- uses: actions/upload-artifact@v2
+      #  with:
+      #    name: Build
+      #    path: build
 
       # Return License
-      - name: Return license
-        uses: game-ci/unity-return-license@v2
-        if: always()
+      #- name: Return license
+      #  uses: game-ci/unity-return-license@v2
+      #  if: always()
