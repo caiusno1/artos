@@ -18,17 +18,16 @@ jobs:
         with:
           repository: caiusno1/artos-core
           path: TOJ-Implementations/VRTOJ/Assets
-          ref: VR
           ssh-key: ${{ secrets.SUBMODULE_SSH_KEY }}
           persist-credentials: false
       
-      - name: clone submodule
-        uses: actions/checkout@v2
-        with:
-          repository: caiusno1/artos-core
-          path: TOJ-Implementations/ARTOJ/Assets/artos-core
-          ssh-key: ${{ secrets.SUBMODULE_SSH_KEY }}
-          persist-credentials: false
+      #- name: clone submodule
+      #  uses: actions/checkout@v2
+      #  with:
+      #    repository: caiusno1/artos-core
+      #    path: TOJ-Implementations/ARTOJ/Assets/artos-core
+      #    ssh-key: ${{ secrets.SUBMODULE_SSH_KEY }}
+      #    persist-credentials: false
 
       # Cache
       #- uses: actions/cache@v2
