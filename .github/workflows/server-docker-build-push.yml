@@ -51,7 +51,7 @@ jobs:
         with:
           context: ./server/artos-api
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}-api
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Build and push Docker images
@@ -59,5 +59,5 @@ jobs:
         with:
           context: ./server/artos-frontend
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}-frontend
           labels: ${{ steps.meta.outputs.labels }}
