@@ -18,6 +18,7 @@ jobs:
         with:
           repository: caiusno1/artos-core
           path: TOJ-Implementations/VRTOJ/Assets
+          ref: VR
           ssh-key: ${{ secrets.SUBMODULE_SSH_KEY }}
           persist-credentials: false
       
@@ -30,12 +31,12 @@ jobs:
           persist-credentials: false
 
       # Cache
-      - uses: actions/cache@v2
-        with:
-          path: TOJ-Implementations/VRTOJ/Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-          restore-keys: |
-            Library-
+      #- uses: actions/cache@v2
+      #  with:
+      #    path: TOJ-Implementations/VRTOJ/Library
+      #    key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+      #    restore-keys: |
+      #      Library-
 
       # Build
       - name: Build VRTOJ
