@@ -173,7 +173,6 @@ public class ExperimentController : MonoBehaviour
         {
             Debug.Log("Real Data");
             trialLog.Last().mode = "real";
-            trialLog.Last().soaDuration = lastSOADuration;
             trialLog.Last().leftLast = result;
             trialLog.Last().TOJFeedback = result;
             trialLog.Last().probeFirstSelected = probeSelected;
@@ -207,7 +206,7 @@ public class ExperimentController : MonoBehaviour
         else 
         {
             Debug.Log("Real Data");
-            trialLog.Last().soaDuration = lastSOADuration;
+            trialLog.Last().mode = "real";
             trialLog.Last().leftLast = !result;
             trialLog.Last().TOJFeedback = result;
             trialLog.Last().probeFirstSelected = probeSelected;

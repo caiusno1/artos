@@ -17,6 +17,7 @@ public class DefaultFlicker : MonoBehaviour
     private GameObject refHidable;
     private int POSITIVE_SOA_IN_FRAMES = 0;
     private bool tojStarted = false;
+    private float soaDuration = -1;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +31,7 @@ public class DefaultFlicker : MonoBehaviour
         {
             if (FrameIdx == 0)
             {
-                ExperimentController.GetInstance().lastSOADuration = 0;
+                this.soaDuration = 0;
                 if (SOA_IN_FRAMES < 0)
                 {
                     probeHidable.active = false;
@@ -66,7 +67,7 @@ public class DefaultFlicker : MonoBehaviour
 
             if(FrameIdx > 0 && FrameIdx <= POSITIVE_SOA_IN_FRAMES)
             {
-                ExperimentController.GetInstance().lastSOADuration += Time.deltaTime;
+                this.soaDuration += Time.deltaTime;
             }
 
 
@@ -98,6 +99,9 @@ public class DefaultFlicker : MonoBehaviour
                 enabled = false;
                 probeHidable = null;
                 refHidable = null;
+                Debug.Log(soaDuration);
+                ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].soaDuration = this.soaDuration;
+                soaDuration = 0;
                 this.callback.Invoke();
             }
             this.FrameIdx++;
