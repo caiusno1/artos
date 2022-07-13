@@ -49,49 +49,49 @@ jobs:
       - name: Return license
         uses: game-ci/unity-return-license@v2
         if: always()
-  winbuild:
-    name: Build for HoloLens
-    runs-on: windows-2019
-    steps:
-      # Checkout
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          lfs: true
-
-      - name: Get submodules
-        env:
-          SSH_KEY_SUBMODULE: ${{secrets.SUBMODULE_SSH_KEY}}
-        run: |
-          eval `ssh-agent -s`
-          ssh-add - <<< "${SSH_KEY_SUBMODULE}"; git submodule update --init --recursive
-
-      # Cache
-      - uses: actions/cache@v2
-        with:
-          path: TOJ-Implementations/ARTOJ/Library
-          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
-          restore-keys: |
-            Library-
-
-      # Build
-      - name: Build ARTOJ
-        uses: game-ci/unity-builder@v2
-        env:
-          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          projectPath: TOJ-Implementations/ARTOJ
-          targetPlatform: Android
-
-      # Output
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Build
-          path: build
-
-      # Return License
-      - name: Return license
-        uses: game-ci/unity-return-license@v2
-        if: always()
+  #winbuild:
+  #  name: Build for HoloLens
+  #  runs-on: windows-2019
+  #  steps:
+  #    # Checkout
+  #    - name: Checkout repository
+  #      uses: actions/checkout@v2
+  #      with:
+  #        lfs: true
+  #
+  #    - name: Get submodules
+  #      env:
+  #        SSH_KEY_SUBMODULE: ${{secrets.SUBMODULE_SSH_KEY}}
+  #      run: |
+  #        eval `ssh-agent -s`
+  #        ssh-add - <<< "${SSH_KEY_SUBMODULE}"; git submodule update --init --recursive
+  #
+  #    # Cache
+  #    - uses: actions/cache@v2
+  #      with:
+  #        path: TOJ-Implementations/ARTOJ/Library
+  #        key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+  #        restore-keys: |
+  #          Library-
+  #
+  #    # Build
+  #    - name: Build ARTOJ
+  #      uses: game-ci/unity-builder@v2
+  #      env:
+  #        UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+  #        UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+  #        UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+  #      with:
+  #        projectPath: TOJ-Implementations/ARTOJ
+  #        targetPlatform: Android
+  #
+  #    # Output
+  #    - uses: actions/upload-artifact@v2
+  #      with:
+  #        name: Build
+  #        path: build
+  #
+  #    # Return License
+  #    - name: Return license
+  #      uses: game-ci/unity-return-license@v2
+  #      if: always()
