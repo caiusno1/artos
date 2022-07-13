@@ -99,9 +99,9 @@ public class DefaultFlicker : MonoBehaviour
                 enabled = false;
                 probeHidable = null;
                 refHidable = null;
-                Debug.Log(soaDuration);
+                Debug.Log(this.soaDuration);
                 ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].soaDuration = this.soaDuration;
-                soaDuration = 0;
+                Debug.Log(ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1]);
                 this.callback.Invoke();
             }
             this.FrameIdx++;

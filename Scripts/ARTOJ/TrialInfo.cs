@@ -7,7 +7,7 @@ public class TrialInfo
     public bool TOJFeedback;
     public float soa;
     public bool probeFirstSelected;
-    public double soaDuration;
+    public float soaDuration;
     public string condition = "NULL";
     public int[][] boardPositions;
     public int firstSelectedPosition;

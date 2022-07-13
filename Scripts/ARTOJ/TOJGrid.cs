@@ -200,8 +200,6 @@ public class TOJGrid : MonoBehaviour
             board[2] = memoryLable[2].ToArray();
             board[3] = memoryLable[3].ToArray();
             ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].boardPositions = board;
-            ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].soaDuration = ExperimentController.GetInstance().lastSOADuration;
-
             ExperimentController.GetInstance().sendResult();
             yield return new WaitForSeconds(1);
             if (tojGrid.firstCardID.Equals(tojGrid.secondCardID))
