@@ -1,4 +1,4 @@
-## Welcome to ARTOS
+## Welcome to ARTOS [![Unity Builds](https://github.com/caiusno1/artos/actions/workflows/build-artos-toj_apps.yml/badge.svg)](https://github.com/caiusno1/artos/actions/workflows/build-artos-toj_apps.yml)
 THE Augmented Reality Toolsuite for Online Studies (at least if you love bayesian data analysis).
 
 ### Installation Requirements
