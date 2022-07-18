@@ -20,6 +20,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import {MatButtonModule} from '@angular/material/button';
     ExperimentsOverviewComponent,
     ExperimentViewComponent,
     GeneralSettingsViewComponent,
-    LoginComponent
+    LoginComponent,
+    DeleteConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatCardModule,
     MatIconModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule
   ],
   providers: [
     AuthService,

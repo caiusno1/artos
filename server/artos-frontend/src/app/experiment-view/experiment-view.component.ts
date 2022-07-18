@@ -1,3 +1,4 @@
+import { ExperimentService } from './../experimentService/experiment.service';
 import { ParticipantService } from './../participantService/participant.service';
 import { environment } from 'src/environments/environment';
 import { ExperimentalResult } from './../resultService/ExperimentalResult';
@@ -18,7 +19,7 @@ export class ExperimentViewComponent implements OnInit {
   displayedColumns: string[] = ['participant_id','timestamp','result','delete'];
   dataSource = new BehaviorSubject<ExperimentalResult[]>([{participant_id:0,result:"a",timestamp:"b"}])
 
-  constructor(private resServ: ResultService, private participantServ: ParticipantService) {
+  constructor(private resServ: ResultService, private participantServ: ParticipantService, private xpServ: ExperimentService) {
     resServ.getResults().then((data) => {
       this.dataSource.next(data)
     })

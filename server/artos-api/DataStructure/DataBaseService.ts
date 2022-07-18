@@ -3,6 +3,8 @@ import { DB_Experiment } from './DB_Experiment';
 import { Connection, createConnection } from "typeorm";
 import { DB_ARTOS_Error } from "./DB_ARTOS_Error";
 import { DB_Result } from "./DB_Result";
+import { DB_Token } from './DB_Token';
+import { DB_Author } from './DB_Author';
 
 const DB_TYPE = ((process.env.DB_TYPE) ? process.env.DB_TYPE : "mysql") as "mysql"|"mariadb"
 const DB_HOST = ((process.env.DB_HOST) ? process.env.DB_HOST : "localhost") as string
@@ -28,7 +30,9 @@ export class DataBaseService{
                     DB_Result,
                     DB_ARTOS_Error,
                     DB_Experiment,
-                    DB_Participant
+                    DB_Participant,
+                    DB_Token,
+                    DB_Author,
                 ],
                 synchronize: true,
                 logging: false

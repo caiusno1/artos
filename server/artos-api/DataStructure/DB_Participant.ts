@@ -3,7 +3,7 @@ import { Column, Entity, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from
 
 @Entity()
 export class DB_Participant{
-    @ManyToOne(type => DB_Experiment)
+    @ManyToOne(type => DB_Experiment, { onDelete: 'CASCADE' })
     public experiment!: DB_Experiment;
     @PrimaryGeneratedColumn('increment')
     public ID!: number;

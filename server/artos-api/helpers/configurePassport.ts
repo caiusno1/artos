@@ -1,13 +1,17 @@
+import { DB_Token } from './../DataStructure/DB_Token';
+import { DB_Author } from './../DataStructure/DB_Author';
+import { DataBaseService } from './../DataStructure/DataBaseService';
 import { Express } from "express-serve-static-core";
 import { PassportStatic } from "passport";
 import {ExtractJwt, Strategy as JWTStrategy} from 'passport-jwt'
 import {Strategy as LocalStrategy} from 'passport-local'
+import bcrypt from 'bcryptjs'
 
 import * as jwt from 'jsonwebtoken'
 
 import { UniqueTokenStrategy } from 'passport-unique-token';
 
-export function configurePassport(passport:PassportStatic, app: Express, config: any): void{
+export function configurePassport(passport:PassportStatic, app: Express, config: any, dbServ: DataBaseService): void{
 
     // Do not know whether still necessary but will not hurt
     app.set('trust proxy', 'loopback')
@@ -24,43 +28,50 @@ export function configurePassport(passport:PassportStatic, app: Express, config:
     });
 
     passport.use(
-        new UniqueTokenStrategy({tokenQuery: 'code'},(token, done) => {
-        if(token === config.passkey){
-            done(null,{user:"kai"})
-        }
-        else {
-            done(null,false)
-        }
-        }),
+        new UniqueTokenStrategy({tokenQuery: 'code'},async (token, done) => {
+        const tokenRepo = await dbServ.connection.getRepository(DB_Token);
+        const ValidToken = await tokenRepo.findOne({Token:token})
+            if(ValidToken){
+                done(null,{token:ValidToken})
+            }
+            else {
+                done(null,false)
+            }
+            }),
     );
 
     const strategy = new LocalStrategy(
-        function(username, password, done) {
-            Promise.resolve((username === "kai" && password === config.adminPassword)?{name:"kai", id:0}:undefined)
-            .then((user) => {
-                if(user){
-                    return done(null, {name:user.name, id:0});
+        async function(username, password, done) {
+            const userRepo = await dbServ.connection.getRepository(DB_Author);
+            const ValidUser = await userRepo.findOne({username})
+            if(ValidUser){
+                var salt = ValidUser.salt;
+                var hash = bcrypt.hashSync(password, salt);
+                if(ValidUser.password === hash){
+                    ValidUser.password = ""
+                    ValidUser.salt = ""
+                    return done(null, {user:ValidUser});
                 }
                 else {
+                    ValidUser.password = ""
+                    ValidUser.salt = ""
                     return done("unauthorized access", false);
                 }
-            })
-            .catch((err) =>{
+
+            }
+            else {
                 return done("unauthorized access", false);
-            });
+            }
         }
     );
     passport.use(strategy);
     passport.use(new JWTStrategy({
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-        // hardcoded JWT Auth Token encryption key 
-        // TODO replace with configurable variable
         secretOrKey   : config['jwt-secret']
     },
     function (jwtPayload, cb) {
         // find the user in db.
-        console.log(jwtPayload)
-        if(jwtPayload.name === "kai"){
+        if(jwtPayload.user){
             return cb(null,jwtPayload);
         }
     }

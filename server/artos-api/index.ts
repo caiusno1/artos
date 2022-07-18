@@ -1,3 +1,4 @@
+import { DB_Author } from './DataStructure/DB_Author';
 import { DataBaseService } from './DataStructure/DataBaseService';
 import { DB_ARTOS_Error } from './DataStructure/DB_ARTOS_Error';
 import express from 'express';
@@ -11,6 +12,7 @@ import passport from 'passport'
 import { configurePassport } from './helpers/configurePassport';
 import cors from 'cors';
 import { jupyterRouter } from './jupyterAPI/jupyter';
+import bcrypt from 'bcryptjs';
 
 // rest of the code remains same
 const errors: string[] = []
@@ -31,10 +33,32 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-configurePassport(passport,app,config)
 
-DataBaseService.getInstance().then(dbServ => {
-    const repository = dbServ.connection.getRepository(DB_ARTOS_Error);
+DataBaseService.getInstance().then(async dbServ => {
+    configurePassport(passport,app,config, dbServ)
+    const repository = dbServ.connection.getRepository(DB_Author);
+    const singleUser = await repository.findOne()
+
+    if(!singleUser){
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(config.adminPassword, salt);
+        const admin = new DB_Author()
+        admin.Name = "Admin"
+        admin.username = "admin"
+        admin.salt = salt
+        admin.password = hash
+
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(config.adminPassword, salt);
+
+        const user = new DB_Author()
+        user.Name = "User"
+        user.username = "user"
+        user.salt = salt
+        user.password = hash
+
+        repository.save([admin, user])
+    }
 
     // default routes
     app.get('/', (req, res) => res.send('Artos API server'));
