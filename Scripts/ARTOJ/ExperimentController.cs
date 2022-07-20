@@ -29,17 +29,18 @@ public class ExperimentController : MonoBehaviour
     private bool tutorialMode = true;
     //private bool InputEnabled = false;
     public StateMachine state = StateMachine.Preparation;
-    [HideInInspector]
     public float lastSOADuration = 0;
     [HideInInspector]
     public List<TrialInfo> trialLog = new List<TrialInfo>();
+    public int CurrentParticipantID = -1;
     private void Awake()
     {
         if(Instance == null)
         {
-            QualitySettings.vSyncCount = 1;
+            QualitySettings.vSyncCount = 0;
 
             Application.targetFrameRate = 60;
+            StartCoroutine(GetParticipantID());
             // Taken from here https://stackoverflow.com/questions/17994935/how-to-get-unix-time-stamp-in-net
             timeStamp = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds;
             // TODO create new runtimeSetup
@@ -158,6 +159,25 @@ public class ExperimentController : MonoBehaviour
             }));
         }
     }
+
+    IEnumerator GetParticipantID()
+    {
+        UnityWebRequest www = UnityWebRequest.Get("https://artosapi.kai-biermeier.de/participant/1/?code=dg4fk%24%23385g9%23%3B0j%C3%9Fh%23%23s(7d%23%230gfh");
+        yield return www.SendWebRequest();
+
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log(www.error);
+            Application.Quit();
+        }
+        else
+        {
+            Debug.Log(www.downloadHandler.text);
+            ParticipantData participantData = JsonUtility.FromJson<ParticipantData>(www.downloadHandler.text);
+            this.CurrentParticipantID = participantData.ID;
+
+        }
+    }
     public void LeftBtnHandler()
     {
         leftBtn.RemoveAllListeners();
@@ -173,7 +193,6 @@ public class ExperimentController : MonoBehaviour
         {
             Debug.Log("Real Data");
             trialLog.Last().mode = "real";
-            trialLog.Last().soaDuration = lastSOADuration;
             trialLog.Last().leftLast = result;
             trialLog.Last().TOJFeedback = result;
             trialLog.Last().probeFirstSelected = probeSelected;
@@ -207,7 +226,7 @@ public class ExperimentController : MonoBehaviour
         else 
         {
             Debug.Log("Real Data");
-            trialLog.Last().soaDuration = lastSOADuration;
+            trialLog.Last().mode = "real";
             trialLog.Last().leftLast = !result;
             trialLog.Last().TOJFeedback = result;
             trialLog.Last().probeFirstSelected = probeSelected;
@@ -280,10 +299,14 @@ public class ExperimentController : MonoBehaviour
         var jsonContent = this.trialLog.Last().toJSON();
         Debug.Log(jsonContent);
         var result = new TOJResult();
-        result.participant_id = 0;
+        result.participant_id = this.CurrentParticipantID;
         result.timestamp = this.timeStamp;
         result.result = jsonContent;
+<<<<<<< HEAD
         result.trialUID = this.trialLog.Count();
+=======
+        result.trialUID = this.trialLog.Count;
+>>>>>>> 1126622490f60b30386d1356c242497dd89365fe
         results.Add(result);
         var jsonifiedList = results.Select((res) => { 
             string baseStr = JsonUtility.ToJson(res);

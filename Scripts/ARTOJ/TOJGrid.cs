@@ -189,18 +189,17 @@ public class TOJGrid : MonoBehaviour
 
     public IEnumerator ShowCardFor2Seconds(TOJGrid tojGrid)
     {
-        if(ExperimentController.GetInstance().state == StateMachine.MemoryEvaluate)
+        if (ExperimentController.GetInstance().state == StateMachine.MemoryEvaluate)
         {
             ExperimentController.GetInstance().state = StateMachine.MemoryDelayBeforeTOJ;
             ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].firstSelectedPosition = tojGrid.firstCardGO.transform.GetSiblingIndex();
             ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].secondSelectedPosition = tojGrid.secondCardGO.transform.GetSiblingIndex();
-            var board =  new int[4][];
+            var board = new int[4][];
             board[0] = memoryLable[0].ToArray();
             board[1] = memoryLable[1].ToArray();
             board[2] = memoryLable[2].ToArray();
             board[3] = memoryLable[3].ToArray();
             ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].boardPositions = board;
-
             ExperimentController.GetInstance().sendResult();
             yield return new WaitForSeconds(1);
             if (tojGrid.firstCardID.Equals(tojGrid.secondCardID))
