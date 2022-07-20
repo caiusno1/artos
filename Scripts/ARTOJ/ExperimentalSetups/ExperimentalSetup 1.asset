@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Basic Set up
   conditions:
-  - {fileID: 11400000, guid: c0e588a6c37a1f947abfd89fd88c8802, type: 2}
+  - {fileID: 11400000, guid: 78afd9ca4bacab74bb4dcf612b63c14c, type: 2}

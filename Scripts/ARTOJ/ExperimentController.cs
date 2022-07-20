@@ -283,6 +283,7 @@ public class ExperimentController : MonoBehaviour
         result.participant_id = 0;
         result.timestamp = this.timeStamp;
         result.result = jsonContent;
+        result.trialUID = this.trialLog.Count();
         results.Add(result);
         var jsonifiedList = results.Select((res) => { 
             string baseStr = JsonUtility.ToJson(res);

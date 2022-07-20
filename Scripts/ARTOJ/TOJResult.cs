@@ -11,5 +11,6 @@ namespace Assets.Scripts
         public int participant_id;
         public int timestamp;
         public string result;
+        public int trialUID;
     }
 }
