@@ -251,6 +251,10 @@ PrefabInstance:
       value: ExperimentalController
       objectReference: {fileID: 0}
     - target: {fileID: 5628692491092701389, guid: 2e16e07b1fca5ea408d178f96b9c0d77, type: 3}
+      propertyPath: currentSetup
+      value: 
+      objectReference: {fileID: 11400000, guid: a90f5770c3edf0a4da4777628a858cac, type: 2}
+    - target: {fileID: 5628692491092701389, guid: 2e16e07b1fca5ea408d178f96b9c0d77, type: 3}
       propertyPath: ExperimentalPositions.Array.data[0]
       value: 
       objectReference: {fileID: 1197141005}
@@ -719,6 +723,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1197141012, guid: fdd920c737b0b7d409e2132ae470d89c, type: 3}
+      propertyPath: allowFarManipulation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197141012, guid: fdd920c737b0b7d409e2132ae470d89c, type: 3}
+      propertyPath: twoHandedManipulationType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 204132026575573954, guid: fdd920c737b0b7d409e2132ae470d89c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -902,6 +914,10 @@ PrefabInstance:
     - target: {fileID: 2140554861197119655, guid: fdd920c737b0b7d409e2132ae470d89c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204069621855455170, guid: fdd920c737b0b7d409e2132ae470d89c, type: 3}
+      propertyPath: InteractableOnClick
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2255216139515193854, guid: fdd920c737b0b7d409e2132ae470d89c, type: 3}
       propertyPath: m_Sprite
@@ -1402,6 +1418,14 @@ PrefabInstance:
     - target: {fileID: 8517425370063055067, guid: fdd920c737b0b7d409e2132ae470d89c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8779034279455500671, guid: fdd920c737b0b7d409e2132ae470d89c, type: 3}
+      propertyPath: states
+      value: 
+      objectReference: {fileID: 11400000, guid: e51893c8eb7938e4ba43985af43c0f72, type: 2}
+    - target: {fileID: 8779034279455500671, guid: fdd920c737b0b7d409e2132ae470d89c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8779034279455500672, guid: fdd920c737b0b7d409e2132ae470d89c, type: 3}
       propertyPath: m_AnchorMax.y

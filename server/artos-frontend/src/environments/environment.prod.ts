@@ -1,7 +1,7 @@
 export const environment = {
   devEnvironment: false,
   production: true,
-  domain:"kai-biermeier.de",
+  domain:"API_LINK",
   devJuypterDomain:"kai-biermeier.de",
   name:"production"
 };
