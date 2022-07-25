@@ -13996,7 +13996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec2c7e670eb7e684582581b41f975851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultBackPlate: {fileID: 21300000, guid: 5d13fd98d563a134785dbbaf9ab92bdc, type: 3}
+  defaultBackPlate: {fileID: 2100000, guid: ec72a3a105768f746b556a8dfdae61a8, type: 2}
   StateSet: 0
   LeftFirst: 1
   probeIsLeft: 0
@@ -14006,18 +14006,18 @@ MonoBehaviour:
   xaxisLength: 6
   yaxisLength: 4
   colorsInput:
-  - {fileID: 21300000, guid: c90f2ce0bac64f046b81981620ff5636, type: 3}
-  - {fileID: 21300000, guid: 2d1368c446ac1f54a8c8cc2495a4c586, type: 3}
-  - {fileID: 21300000, guid: 41703b2f82711c640aa3909adf3f1360, type: 3}
-  - {fileID: 21300000, guid: 58eb5e1ea3e3c094e85a2e4fb39deb54, type: 3}
-  - {fileID: 21300000, guid: fde91497732be734f8191df16dcd9a82, type: 3}
-  - {fileID: 21300000, guid: 8cbcade0e0cf7a94ba559c0ed9366c64, type: 3}
-  - {fileID: 21300000, guid: cab9c1a1f8acfba438b9f832b9a727e5, type: 3}
-  - {fileID: 21300000, guid: 65e97c81075d6814489e3729f82bbd76, type: 3}
-  - {fileID: 21300000, guid: d86e1ea3995a338448dfdd4acb0d99da, type: 3}
-  - {fileID: 21300000, guid: 7402c5a03405bf3469fee32b8c8ca84e, type: 3}
-  - {fileID: 21300000, guid: f3d4d00aed12ef54ba6acadab5c81209, type: 3}
-  - {fileID: 21300000, guid: c070bb5937ebcf64285b47d9c9194a68, type: 3}
+  - {fileID: 2100000, guid: 6a60de450b5856e4cbc282a5785be912, type: 2}
+  - {fileID: 2100000, guid: 670d2b0f55890d1418fa578a5dee791b, type: 2}
+  - {fileID: 2100000, guid: 03e30e40da9f85c4e8c1afdb434e6f64, type: 2}
+  - {fileID: 2100000, guid: 72b63b954176bd14d867f3331fd4de65, type: 2}
+  - {fileID: 2100000, guid: e3f0a1a505f2abe4982e118b7fd26552, type: 2}
+  - {fileID: 2100000, guid: 1b68a52d65bb70d4d922521a081c21bb, type: 2}
+  - {fileID: 2100000, guid: 04e9dd71769947844bedbe13033928c5, type: 2}
+  - {fileID: 2100000, guid: 38dbdcee27370734a9faab3c91bdf5e6, type: 2}
+  - {fileID: 2100000, guid: cca743dfacf12814e8a807ec2230dcb2, type: 2}
+  - {fileID: 2100000, guid: 2d7138913d67cc449a63509190e0c092, type: 2}
+  - {fileID: 2100000, guid: 166a88427fb290c41bf20c8d8d4b52f7, type: 2}
+  - {fileID: 2100000, guid: 802d175ad82581c4fbf2bb4f40e74721, type: 2}
   colors: []
   firstCardGO: {fileID: 0}
   secondCardGO: {fileID: 0}
