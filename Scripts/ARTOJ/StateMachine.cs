@@ -14,5 +14,6 @@ public enum StateMachine
     MemoryChooseSecond,
     MemoryEvaluate,
     MemoryDelayBeforeTOJ,
+    TutorialFinished,
     ExperimentFinished,
 }

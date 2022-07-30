@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -46,5 +47,10 @@ public class TutorialManager : MonoBehaviour
         Destroy(startBtn);
         CounterText.text = "   " + SmallCounter;
         ExperimentController.GetInstance().state = StateMachine.StartFired;
+    }
+
+    internal void SetParticipantName(string name, int iD)
+    {
+        startBtn.GetComponentsInChildren<TMP_Text>()[1].text = "Start Experiment (" + name +";"+iD+")";
     }
 }

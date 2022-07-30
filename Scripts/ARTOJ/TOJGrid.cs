@@ -191,15 +191,22 @@ public class TOJGrid : MonoBehaviour
     {
         if (ExperimentController.GetInstance().state == StateMachine.MemoryEvaluate)
         {
+            var currentTrial = ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1];
             ExperimentController.GetInstance().state = StateMachine.MemoryDelayBeforeTOJ;
-            ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].firstSelectedPosition = tojGrid.firstCardGO.transform.GetSiblingIndex();
-            ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].secondSelectedPosition = tojGrid.secondCardGO.transform.GetSiblingIndex();
+            currentTrial.firstSelectedPosition = tojGrid.firstCardGO.transform.GetSiblingIndex();
+            currentTrial.secondSelectedPosition = tojGrid.secondCardGO.transform.GetSiblingIndex();
             var board = new int[4][];
             board[0] = memoryLable[0].ToArray();
             board[1] = memoryLable[1].ToArray();
             board[2] = memoryLable[2].ToArray();
             board[3] = memoryLable[3].ToArray();
-            ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].boardPositions = board;
+            currentTrial.boardPositions = board;
+            // 3 miliseconds difference between planed soa and actual soa is an arbitrary threshold :)
+            currentTrial.valid = Math.Abs(Math.Abs(currentTrial.soa)*1/60 - currentTrial.soaDuration) < 0.003;
+            if (!currentTrial.valid && currentTrial.mode != "tutorial")
+            {
+                ExperimentController.GetInstance().runtimeSetup.Add(ExperimentController.GetInstance().CurrentCondition);
+            }
             ExperimentController.GetInstance().sendResult();
             yield return new WaitForSeconds(1);
             if (tojGrid.firstCardID.Equals(tojGrid.secondCardID))
@@ -233,6 +240,7 @@ public class TOJGrid : MonoBehaviour
             tojGrid.firstCardID = null;
             tojGrid.secondCardID = null;
             ExperimentController.GetInstance().state = StateMachine.TOJ_READY;
+            ExperimentController.GetInstance().NextExperiment();
         }
     }
 

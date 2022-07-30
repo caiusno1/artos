@@ -32,7 +32,11 @@ public class ExperimentController : MonoBehaviour
     public float lastSOADuration = 0;
     [HideInInspector]
     public List<TrialInfo> trialLog = new List<TrialInfo>();
-    public int CurrentParticipantID = -1;
+    public int CurrentParticipantUID = -1;
+    public string CurrentParticipantIdentifier = "Undefined";
+    public Dictionary<string,object> CurrentCondition;
+    public TutorialManager tutorialMngt;
+    public GameObject tutorialFinishedBanner;
     private void Awake()
     {
         if(Instance == null)
@@ -67,6 +71,7 @@ public class ExperimentController : MonoBehaviour
                     {
                         this.runtimeSetup.Add(new Dictionary<string, object>());
                         this.runtimeSetup[this.runtimeSetup.Count - 1].Add(this.currentSetup.conditions[0].Name, this.currentSetup.conditions[0].values[i]);
+                        this.runtimeSetup[this.runtimeSetup.Count - 1].Add("Mode", "Real");
                     }
                 }
 
@@ -125,6 +130,7 @@ public class ExperimentController : MonoBehaviour
     {
         if(ExperimentalPositions.Count  > 0)
         {
+            tutorialMngt.SetParticipantName(this.CurrentParticipantIdentifier, this.CurrentParticipantUID);
             this.currentPosition = 0;
             ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].transform.GetChild(0).gameObject.SetActive(true);
             leftBtn = ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].GetComponentInChildren<TOJGrid>().leftBtn;
@@ -147,7 +153,8 @@ public class ExperimentController : MonoBehaviour
         if(state == StateMachine.StartFired)
         {
             var trial = new TrialInfo();
-            if ((this.runtimeSetup[currentPosition + 1]["SOA"] is float csoa))
+            CurrentCondition = this.runtimeSetup[currentPosition];
+            if ((this.runtimeSetup[currentPosition]["SOA"] is float csoa))
             {
                 trial.soa = (int)csoa;
             }
@@ -174,8 +181,9 @@ public class ExperimentController : MonoBehaviour
         {
             Debug.Log(www.downloadHandler.text);
             ParticipantData participantData = JsonUtility.FromJson<ParticipantData>(www.downloadHandler.text);
-            this.CurrentParticipantID = participantData.ID;
 
+            this.CurrentParticipantUID = participantData.ID;
+            this.CurrentParticipantIdentifier = participantData.name;
         }
     }
     public void LeftBtnHandler()
@@ -188,6 +196,9 @@ public class ExperimentController : MonoBehaviour
         {
             Debug.Log("Tutorial");
             trialLog.Last().mode = "tutorial";
+            trialLog.Last().leftLast = result;
+            trialLog.Last().TOJFeedback = result;
+            trialLog.Last().probeFirstSelected = probeSelected;
         } 
         else
         {
@@ -197,13 +208,15 @@ public class ExperimentController : MonoBehaviour
             trialLog.Last().TOJFeedback = result;
             trialLog.Last().probeFirstSelected = probeSelected;
         }
+        if(tutorialMode)
+        {
+            PlayFeedbackSound(result);
+        }
 
-        PlayFeedbackSound(result);
         applyPoints(result);
-        if (currentPosition < runtimeSetup.Count - 1)
+        if (currentPosition < runtimeSetup.Count)
         {
             ExperimentController.GetInstance().state = StateMachine.MemoryChoseFirst;
-            StartCoroutine(this.NextMemory());
         }
         else
         {
@@ -222,6 +235,10 @@ public class ExperimentController : MonoBehaviour
         if (this.runtimeSetup[this.currentPosition].ContainsKey("Mode") && this.runtimeSetup[this.currentPosition]["Mode"] == "Tutorial")
         {
             Debug.Log("Tutorial");
+            trialLog.Last().mode = "tutorial";
+            trialLog.Last().leftLast = !result;
+            trialLog.Last().TOJFeedback = result;
+            trialLog.Last().probeFirstSelected = probeSelected;
         }
         else 
         {
@@ -232,12 +249,14 @@ public class ExperimentController : MonoBehaviour
             trialLog.Last().probeFirstSelected = probeSelected;
         }
 
-        PlayFeedbackSound(result);
+        if (tutorialMode)
+        {
+            PlayFeedbackSound(result);
+        }
         applyPoints(result);
-        if (currentPosition < runtimeSetup.Count - 1)
+        if (currentPosition < runtimeSetup.Count)
         {
             ExperimentController.GetInstance().state = StateMachine.MemoryChoseFirst;
-            StartCoroutine(this.NextMemory());
         }
         else
         {
@@ -245,23 +264,33 @@ public class ExperimentController : MonoBehaviour
             Application.Quit();
         }
     }
-    private IEnumerator NextMemory()
+    public IEnumerator TutorialFinishedDisplay()
     {
-        yield return new WaitUntil(() => ExperimentController.GetInstance().state == StateMachine.TOJ_READY);
-        this.NextExperiment();
+        tutorialFinishedBanner.SetActive(true);
+        yield return new WaitForSeconds(3);
+        tutorialFinishedBanner.SetActive(false);
+        this.state = StateMachine.TOJ_READY;
+        NextExperiment();
     }
     public void NextExperiment()
     {
+        if(tutorialMode == true && this.runtimeSetup[currentPosition+1]["Mode"].Equals("Real"))
+        {
+            tutorialMode = false;
+            this.state = StateMachine.TutorialFinished;
+            StartCoroutine(TutorialFinishedDisplay());
+        }
         if(this.currentPosition < runtimeSetup.Count - 1)
         {
+            this.currentPosition++;
             var trial = new TrialInfo();
-            if ((this.runtimeSetup[currentPosition + 1]["SOA"] is float csoa))
+            CurrentCondition = this.runtimeSetup[currentPosition];
+            if ((this.runtimeSetup[currentPosition]["SOA"] is float csoa))
             {
                 trial.soa = (int)csoa;
             }
             trialLog.Add(trial);
             ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].transform.GetChild(0).gameObject.SetActive(false);
-            this.currentPosition++;
             ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].transform.GetChild(0).gameObject.SetActive(true);
             leftBtn = ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].GetComponentInChildren<TOJGrid>().leftBtn;
             rightBtn = ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].GetComponentInChildren<TOJGrid>().rightBtn;
@@ -299,14 +328,10 @@ public class ExperimentController : MonoBehaviour
         var jsonContent = this.trialLog.Last().toJSON();
         Debug.Log(jsonContent);
         var result = new TOJResult();
-        result.participant_id = this.CurrentParticipantID;
+        result.participant_id = this.CurrentParticipantUID;
         result.timestamp = this.timeStamp;
         result.result = jsonContent;
-<<<<<<< HEAD
-        result.trialUID = this.trialLog.Count();
-=======
         result.trialUID = this.trialLog.Count;
->>>>>>> 1126622490f60b30386d1356c242497dd89365fe
         results.Add(result);
         var jsonifiedList = results.Select((res) => { 
             string baseStr = JsonUtility.ToJson(res);
