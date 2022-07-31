@@ -181,7 +181,7 @@ public class ExperimentController : MonoBehaviour
         {
             Debug.Log(www.downloadHandler.text);
             ParticipantData participantData = JsonUtility.FromJson<ParticipantData>(www.downloadHandler.text);
-            this.CurrentParticipantID = participantData.ID;
+            this.CurrentParticipantUID = participantData.ID;
 
             this.CurrentParticipantUID = participantData.ID;
             this.CurrentParticipantIdentifier = participantData.name;
@@ -219,7 +219,6 @@ public class ExperimentController : MonoBehaviour
         if (currentPosition < runtimeSetup.Count)
         {
             ExperimentController.GetInstance().state = StateMachine.MemoryChoseFirst;
-            StartCoroutine(this.NextMemory());
         }
         else
         {
@@ -260,7 +259,6 @@ public class ExperimentController : MonoBehaviour
         if (currentPosition < runtimeSetup.Count)
         {
             ExperimentController.GetInstance().state = StateMachine.MemoryChoseFirst;
-            StartCoroutine(this.NextMemory());
         }
         else
         {
