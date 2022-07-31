@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject startBtn;
     public int BigCounter;
     public int SmallCounter = 3;
+    public GameObject TabletBtns;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +45,10 @@ public class TutorialManager : MonoBehaviour
     }
     public void OnStartFired()
     {
+        if(TabletBtns != null)
+        {
+            TabletBtns.SetActive(true);
+        }
         CounterCanvas.gameObject.SetActive(true);
         Destroy(startBtn);
         CounterText.text = "   " + SmallCounter;
@@ -51,6 +57,14 @@ public class TutorialManager : MonoBehaviour
 
     internal void SetParticipantName(string name, int iD)
     {
-        startBtn.GetComponentsInChildren<TMP_Text>()[1].text = "Start Experiment (" + name +";"+iD+")";
+        if (startBtn.GetComponent<Button>())
+        {
+            startBtn.GetComponentsInChildren<TMP_Text>()[0].text = "Start Experiment (" + name + ";" + iD + ")";
+        }
+        else
+        {
+            startBtn.GetComponentsInChildren<TMP_Text>()[1].text = "Start Experiment (" + name + ";" + iD + ")";
+        }
+
     }
 }

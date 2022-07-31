@@ -121,7 +121,12 @@ public class DefaultFlicker : MonoBehaviour
     }
     private GameObject GetHideable(GameObject go)
     {
-        return go.GetComponentInChildren<SpriteRenderer>().gameObject;
+        var hideable = go.GetComponentInChildren<SpriteRenderer>()?.gameObject;
+        if(hideable == null)
+        {
+            hideable = go;
+        }
+        return hideable;
     }
     public bool HasFinishedTOJ()
     {

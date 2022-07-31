@@ -221,7 +221,16 @@ public class TOJGrid : MonoBehaviour
                         foreach(var stimulus in stimulusRow)
                         {
                             var stimulusMeshRenderer = stimulus.GetComponentInChildren<SpriteRenderer>();
-                            stimulusMeshRenderer.sprite = defaultBackPlate;
+                            if(stimulusMeshRenderer == null)
+                            {
+                                stimulusMeshRenderer.sprite = defaultBackPlate;
+                            }
+                            else
+                            {
+                                var image = stimulus.GetComponent<Image>();
+                                image.sprite = defaultBackPlate;
+                            }
+
                         }
                     }
                 }
@@ -231,9 +240,20 @@ public class TOJGrid : MonoBehaviour
             {
                 var firstCardMeshRenderer = tojGrid.firstCardGO.GetComponentInChildren<SpriteRenderer>();
                 var secondCardMeshRenderer = tojGrid.secondCardGO.GetComponentInChildren<SpriteRenderer>();
-                firstCardMeshRenderer.sprite = defaultBackPlate;
-                secondCardMeshRenderer.sprite = defaultBackPlate;
-                Debug.Log("Memory Wrong");
+                if(firstCardMeshRenderer != null)
+                {
+                    firstCardMeshRenderer.sprite = defaultBackPlate;
+                    secondCardMeshRenderer.sprite = defaultBackPlate;
+                    Debug.Log("Memory Wrong");
+                }
+                else
+                {
+                    var firstCardMeshRender = tojGrid.firstCardGO.GetComponent<Image>();
+                    var secondCardMeshRender = tojGrid.secondCardGO.GetComponent<Image>();
+                    firstCardMeshRender.sprite = defaultBackPlate;
+                    secondCardMeshRender.sprite = defaultBackPlate;
+                    Debug.Log("Memory Wrong");
+                }
             }
             tojGrid.secondCardGO = null;
             tojGrid.firstCardGO = null;
@@ -274,12 +294,23 @@ public class TOJGrid : MonoBehaviour
                 return;
             }
 
-                if (ExperimentController.GetInstance().state == StateMachine.MemoryChoseFirst || ExperimentController.GetInstance().state == StateMachine.MemoryChooseSecond)
+            if (ExperimentController.GetInstance().state == StateMachine.MemoryChoseFirst || ExperimentController.GetInstance().state == StateMachine.MemoryChooseSecond)
             {
                 var spriteRenderer = btn.GetComponentInChildren<SpriteRenderer>();
-                spriteRenderer.sprite = color;
-                spriteRenderer.enabled = false;
-                spriteRenderer.enabled = true;
+                if(spriteRenderer == null)
+                {
+                    var image = btn.GetComponent<Image>();
+                    image.sprite = color;
+                    image.enabled = false;
+                    image.enabled = true;
+                }
+                else
+                {
+                    spriteRenderer.sprite = color;
+                    spriteRenderer.enabled = false;
+                    spriteRenderer.enabled = true;
+                }
+
             }
 
             if (ExperimentController.GetInstance().state == StateMachine.MemoryChoseFirst)
