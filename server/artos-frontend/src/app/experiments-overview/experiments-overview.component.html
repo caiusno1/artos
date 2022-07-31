@@ -1,8 +1,0 @@
-<mat-card>
-<button (click)="createNewExperiment()">Create New Experiment</button>
-<button (click)="deleteExperiment()">Delete Current Experiment</button>
-</mat-card>
-<mat-tab-group #tabGroup  (selectedTabChange)="tabChanged($event)">
-  <mat-tab *ngFor="let item of experiments" label="Experiment {{item.ID}}"><app-experiment-view [experimentID]="item.ID"></app-experiment-view></mat-tab>
-</mat-tab-group>
-
