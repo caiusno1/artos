@@ -18,7 +18,7 @@ public class ExperimentController : MonoBehaviour
     public AudioClip correctSound;
     public AudioClip wrongSound;
     private int currentPosition;
-    private int repetitions = 3;
+    private int repetitions = 30;
     private static ExperimentController Instance;
     private ButtonProxy leftBtn;
     private ButtonProxy rightBtn;
@@ -213,8 +213,6 @@ public class ExperimentController : MonoBehaviour
         {
             PlayFeedbackSound(result);
         }
-
-        PlayFeedbackSound(result);
         applyPoints(result);
         if (currentPosition < runtimeSetup.Count)
         {
