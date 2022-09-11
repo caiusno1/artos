@@ -204,7 +204,11 @@ public class TOJGrid : MonoBehaviour
             board[3] = memoryLable[3].ToArray();
             currentTrial.boardPositions = board;
             // 3 miliseconds difference between planed soa and actual soa is an arbitrary threshold :)
+<<<<<<< HEAD
             //currentTrial.valid = Math.Abs(Math.Abs(currentTrial.soa)*1/60 - currentTrial.soaDuration) == 0;
+=======
+            currentTrial.valid = Math.Abs(Math.Abs(currentTrial.soa)*1/60 - currentTrial.soaDuration) == 0;
+>>>>>>> f7a9ded2d925b8d2f4dbfda1c00c0d63619fe459
             if (!currentTrial.valid && currentTrial.mode != "tutorial")
             {
                 ExperimentController.GetInstance().runtimeSetup.Add(ExperimentController.GetInstance().CurrentCondition);

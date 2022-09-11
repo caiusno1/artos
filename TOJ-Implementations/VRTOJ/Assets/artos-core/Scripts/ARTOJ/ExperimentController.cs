@@ -44,6 +44,9 @@ public class ExperimentController : MonoBehaviour
             QualitySettings.vSyncCount = 0;
 
             Application.targetFrameRate = 60;
+# if OCULUSINTEGRATION_PRESENT
+            OVRPlugin.systemDisplayFrequency = 60.0f;
+# endif
             StartCoroutine(GetParticipantID());
             // Taken from here https://stackoverflow.com/questions/17994935/how-to-get-unix-time-stamp-in-net
             timeStamp = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds;
