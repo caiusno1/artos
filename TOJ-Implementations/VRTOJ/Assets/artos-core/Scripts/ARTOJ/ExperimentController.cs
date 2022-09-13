@@ -18,7 +18,7 @@ public class ExperimentController : MonoBehaviour
     public AudioClip correctSound;
     public AudioClip wrongSound;
     private int currentPosition;
-    private int repetitions = 3;
+    private int repetitions = 30;
     private static ExperimentController Instance;
     private ButtonProxy leftBtn;
     private ButtonProxy rightBtn;
@@ -44,6 +44,9 @@ public class ExperimentController : MonoBehaviour
             QualitySettings.vSyncCount = 0;
 
             Application.targetFrameRate = 60;
+# if OCULUSINTEGRATION_PRESENT
+            OVRPlugin.systemDisplayFrequency = 60.0f;
+# endif
             StartCoroutine(GetParticipantID());
             // Taken from here https://stackoverflow.com/questions/17994935/how-to-get-unix-time-stamp-in-net
             timeStamp = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds;
@@ -213,8 +216,6 @@ public class ExperimentController : MonoBehaviour
         {
             PlayFeedbackSound(result);
         }
-
-        PlayFeedbackSound(result);
         applyPoints(result);
         if (currentPosition < runtimeSetup.Count)
         {

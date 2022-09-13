@@ -68,6 +68,8 @@ public class TOJGrid : MonoBehaviour
         int idx2 = 0;
         stimuli = new List<List<GameObject>>();
         stimuli.Add(new List<GameObject>());
+        memoryColor = new List<List<Sprite>>();
+        memoryLable = new List<List<int>>();
         memoryColor.Add(new List<Sprite>());
         memoryLable.Add(new List<int>());
         var iteratorVar = 0;
@@ -202,7 +204,7 @@ public class TOJGrid : MonoBehaviour
             board[3] = memoryLable[3].ToArray();
             currentTrial.boardPositions = board;
             // 3 miliseconds difference between planed soa and actual soa is an arbitrary threshold :)
-            currentTrial.valid = Math.Abs(Math.Abs(currentTrial.soa)*1/60 - currentTrial.soaDuration) < 0.003;
+            //currentTrial.valid = Math.Abs(Math.Abs(currentTrial.soa)*1/60 - currentTrial.soaDuration) == 0;
             if (!currentTrial.valid && currentTrial.mode != "tutorial")
             {
                 ExperimentController.GetInstance().runtimeSetup.Add(ExperimentController.GetInstance().CurrentCondition);
@@ -224,6 +226,8 @@ public class TOJGrid : MonoBehaviour
                             stimulusMeshRenderer.sprite = defaultBackPlate;
                         }
                     }
+                    closedCards = 24;
+                    this.Start();
                 }
                 Debug.Log("Memory Correct");
             }
@@ -274,12 +278,12 @@ public class TOJGrid : MonoBehaviour
                 return;
             }
 
-                if (ExperimentController.GetInstance().state == StateMachine.MemoryChoseFirst || ExperimentController.GetInstance().state == StateMachine.MemoryChooseSecond)
+            if (ExperimentController.GetInstance().state == StateMachine.MemoryChoseFirst || ExperimentController.GetInstance().state == StateMachine.MemoryChooseSecond)
             {
                 var spriteRenderer = btn.GetComponentInChildren<SpriteRenderer>();
                 spriteRenderer.sprite = color;
-                spriteRenderer.enabled = false;
-                spriteRenderer.enabled = true;
+//                spriteRenderer.enabled = false;
+//                spriteRenderer.enabled = true;
             }
 
             if (ExperimentController.GetInstance().state == StateMachine.MemoryChoseFirst)

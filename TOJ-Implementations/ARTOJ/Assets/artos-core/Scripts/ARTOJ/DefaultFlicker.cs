@@ -18,6 +18,9 @@ public class DefaultFlicker : MonoBehaviour
     private int POSITIVE_SOA_IN_FRAMES = 0;
     private bool tojStarted = false;
     private float soaDuration = -1;
+    private bool tooShort = false;
+    private bool tooLong = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,8 @@ public class DefaultFlicker : MonoBehaviour
             if (FrameIdx == 0)
             {
                 this.soaDuration = 0;
+                tooShort = false;
+                tooLong = false;
                 if (SOA_IN_FRAMES < 0)
                 {
                     probeHidable.active = false;
@@ -46,7 +51,7 @@ public class DefaultFlicker : MonoBehaviour
                     refHidable.active = false;
                 }
             }
-            else if (FrameIdx == 1)
+            else if (FrameIdx == 2)
             {
                 if (SOA_IN_FRAMES < 0)
                 {
@@ -63,11 +68,30 @@ public class DefaultFlicker : MonoBehaviour
                     enabled = false;
                     this.callback.Invoke();
                 }
+                if(Time.deltaTime > 1 / 60)
+                {
+                    tooShort = true;
+                }
             }
 
             if(FrameIdx > 0 && FrameIdx <= POSITIVE_SOA_IN_FRAMES)
             {
                 this.soaDuration += Time.deltaTime;
+            }
+
+            if (FrameIdx == POSITIVE_SOA_IN_FRAMES - 1)
+            {
+                if (Time.deltaTime > 1 / 60)
+                {
+                    if (tooShort)
+                    {
+                        tooShort = false;
+                    }
+                    else
+                    {
+                        tooLong = true;
+                    }
+                }
             }
 
 
@@ -83,7 +107,7 @@ public class DefaultFlicker : MonoBehaviour
                     probeHidable.active = false;
                 }
             }
-            else if(FrameIdx == POSITIVE_SOA_IN_FRAMES + 1)
+            else if(FrameIdx == POSITIVE_SOA_IN_FRAMES + 2)
             {
                 if (SOA_IN_FRAMES < 0)
                 {
@@ -101,6 +125,7 @@ public class DefaultFlicker : MonoBehaviour
                 refHidable = null;
                 Debug.Log(this.soaDuration);
                 ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].soaDuration = this.soaDuration;
+                ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].valid = !tooShort && !tooLong;
                 Debug.Log(ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1]);
                 this.callback.Invoke();
             }
