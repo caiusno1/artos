@@ -27,7 +27,7 @@ export class ResultService {
     })
   }
   createJuypterNotebook(expermimentID: number, participantIDName: string, conditionIDNames: string[]){
-    return this.http.put(`https://artos-api.kai-biermeier.de/jupyter/`,
+    return this.http.put(`https://artosapi.kai-biermeier.de/jupyter/`,
     {
       "expermimentID":`${expermimentID}`,
       "participantID":`${participantIDName}`,

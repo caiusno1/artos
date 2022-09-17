@@ -6,6 +6,7 @@ export const environment = {
   devEnvironment: true,
   production: false,
   domain:"localhost:8000",
+  version:"main upstream",
   devJuypterDomain:"kai-biermeier.de",
   name:"development"
 };

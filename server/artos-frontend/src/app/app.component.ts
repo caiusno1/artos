@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { AuthService } from './authentificationService/auth.service';
 import { Component } from '@angular/core';
 
@@ -8,8 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'artos-frontend';
+  version = "undefined";
   isLoggedIn = false
   constructor(public auth:AuthService){
+    this.version = environment.version
   }
   public logout(){
     console.log("test")
