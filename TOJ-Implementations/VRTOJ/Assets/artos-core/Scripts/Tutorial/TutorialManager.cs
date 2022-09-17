@@ -11,6 +11,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject startBtn;
     public int BigCounter;
     public int SmallCounter = 3;
+    public bool inR = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,8 +50,17 @@ public class TutorialManager : MonoBehaviour
         ExperimentController.GetInstance().state = StateMachine.StartFired;
     }
 
-    internal void SetParticipantName(string name, int iD)
+    internal IEnumerator SetParticipantName(string name, int iD)
     {
-        startBtn.GetComponentsInChildren<TMP_Text>()[1].text = "Start Experiment (" + name +";"+iD+")";
+        yield return new WaitUntil(() => ExperimentController.GetInstance().participantSet);
+        if(inR)
+        {
+            startBtn.GetComponentInChildren<TMP_Text>().text = "Start Experiment (" + name + ";" + iD + ")";
+        }
+        else
+        {
+            startBtn.GetComponentsInChildren<TMP_Text>()[1].text = "Start Experiment (" + name + ";" + iD + ")";
+        }
+
     }
 }

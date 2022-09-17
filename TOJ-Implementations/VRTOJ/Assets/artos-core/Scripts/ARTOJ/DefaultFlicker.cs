@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class DefaultFlicker : MonoBehaviour
 {
+    public bool inR = false;
     private bool enabled = false;
     private int SOA_IN_FRAMES = 0;
     private int FrameIdx = 0;
@@ -146,7 +147,15 @@ public class DefaultFlicker : MonoBehaviour
     }
     private GameObject GetHideable(GameObject go)
     {
-        return go.GetComponentInChildren<SpriteRenderer>().gameObject;
+        if (inR)
+        {
+            return go.GetComponent<Image>().gameObject;
+        }
+        else
+        {
+            return go.GetComponentInChildren<SpriteRenderer>().gameObject;
+        }
+
     }
     public bool HasFinishedTOJ()
     {

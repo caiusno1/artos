@@ -315,7 +315,6 @@ MonoBehaviour:
   startBtn: {fileID: 2424442610798273930}
   BigCounter: 0
   SmallCounter: 3
-  TabletBtns: {fileID: 0}
 --- !u!1 &2424442610741271356
 GameObject:
   m_ObjectHideFlags: 0

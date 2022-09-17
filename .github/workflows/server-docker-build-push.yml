@@ -6,9 +6,10 @@
 name: Publish Docker image
 
 on:
-  release:
-    types: [published]
-
+  push:
+    branches:
+      - main
+      - 'releases/**'
 
 jobs:
     

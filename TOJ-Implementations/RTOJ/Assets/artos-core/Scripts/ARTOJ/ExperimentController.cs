@@ -34,13 +34,16 @@ public class ExperimentController : MonoBehaviour
     public List<TrialInfo> trialLog = new List<TrialInfo>();
     public int CurrentParticipantUID = -1;
     public string CurrentParticipantIdentifier = "Undefined";
-    public Dictionary<string,object> CurrentCondition;
+    public Dictionary<string, object> CurrentCondition;
     public TutorialManager tutorialMngt;
     public GameObject tutorialFinishedBanner;
+    public List<int> repetitionsPerSOA = new List<int>(){24,24,32,32,48,48,48,32,32,24,24};
+    public bool participantSet = false;
     private void Awake()
     {
         if(Instance == null)
         {
+            ExperimentController.Instance = this;
             QualitySettings.vSyncCount = 0;
 
             Application.targetFrameRate = 60;
@@ -52,8 +55,9 @@ public class ExperimentController : MonoBehaviour
             timeStamp = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds;
             // TODO create new runtimeSetup
             this.runtimeSetup = new List<Dictionary<string, object>>();
+            var runtimeSetupRealData = new List<Dictionary<string, object>>();
 
-            if(this.currentSetup.conditions.Count <= 0)
+            if (this.currentSetup.conditions.Count <= 0)
             {
                 throw new System.Exception("No conditions are provided");
             }
@@ -67,17 +71,17 @@ public class ExperimentController : MonoBehaviour
                     this.runtimeSetup[this.runtimeSetup.Count - 1].Add(this.currentSetup.conditions[0].Name, this.currentSetup.conditions[0].values[r.Next(0, this.currentSetup.conditions[0].values.Count-1)]);
                     this.runtimeSetup[this.runtimeSetup.Count - 1].Add("Mode", "Tutorial");
                 }
-                for(var repIdx = 0; repIdx < repetitions; repIdx++)
+                for (var i = 0; i < this.currentSetup.conditions[0].values.Count; i++)
                 {
-                    this.currentSetup.conditions.Shuffle();
-                    for (var i = 0; i < this.currentSetup.conditions[0].values.Count; i++)
+                    for (var repIdx = 0; repIdx < repetitionsPerSOA[i]; repIdx++)
                     {
-                        this.runtimeSetup.Add(new Dictionary<string, object>());
-                        this.runtimeSetup[this.runtimeSetup.Count - 1].Add(this.currentSetup.conditions[0].Name, this.currentSetup.conditions[0].values[i]);
-                        this.runtimeSetup[this.runtimeSetup.Count - 1].Add("Mode", "Real");
+                        runtimeSetupRealData.Add(new Dictionary<string, object>());
+                        runtimeSetupRealData[runtimeSetupRealData.Count - 1].Add(this.currentSetup.conditions[0].Name, this.currentSetup.conditions[0].values[i]);
+                        runtimeSetupRealData[runtimeSetupRealData.Count - 1].Add("Mode", "Real");
                     }
                 }
-
+                runtimeSetupRealData.Shuffle();
+                this.runtimeSetup.AddRange(runtimeSetupRealData);
             }
             else if(this.currentSetup.conditions.Count > 1)
             {
@@ -109,8 +113,6 @@ public class ExperimentController : MonoBehaviour
             runtimeSetup[0].Add("SOA", -100);
             runtimeSetup.Add(new Dictionary<string, object>());
             runtimeSetup[1].Add("SOA", +100);*/
-
-            ExperimentController.Instance = this;
         }
         else
         {
@@ -133,7 +135,7 @@ public class ExperimentController : MonoBehaviour
     {
         if(ExperimentalPositions.Count  > 0)
         {
-            tutorialMngt.SetParticipantName(this.CurrentParticipantIdentifier, this.CurrentParticipantUID);
+            StartCoroutine(tutorialMngt.SetParticipantName(this.CurrentParticipantIdentifier, this.CurrentParticipantUID));
             this.currentPosition = 0;
             ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].transform.GetChild(0).gameObject.SetActive(true);
             leftBtn = ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].GetComponentInChildren<TOJGrid>().leftBtn;
@@ -188,6 +190,7 @@ public class ExperimentController : MonoBehaviour
 
             this.CurrentParticipantUID = participantData.ID;
             this.CurrentParticipantIdentifier = participantData.name;
+            this.participantSet = true;
         }
     }
     public void LeftBtnHandler()

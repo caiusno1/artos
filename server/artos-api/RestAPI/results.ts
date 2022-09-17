@@ -69,7 +69,7 @@ resultsRouter.put('/', passport.authenticate(['token', 'jwt']), async function(r
             const experiment = await artosExperimemtRepo.findOne({ID:id});
             if(!returnOnFailure(experiment,req,res)){return}
             result.experiment = experiment;
-            console.log(result)
+            // console.log(result)
             artosResultRepo.save(result);
         }
     }
