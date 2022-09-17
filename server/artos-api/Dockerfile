@@ -1,10 +1,10 @@
 FROM node:12 as builder
 WORKDIR /usr/src/api-server
 COPY package*.json ./
-RUN npm install
+RUN npm i
+RUN npm ci
 COPY . .
-RUN npm install typescript -g
-RUN tsc
+RUN npx tsc
 
 FROM node:12
 WORKDIR /usr/src/api-server
