@@ -7,6 +7,7 @@ import { DB_Result } from "../DataStructure/DB_Result";
 import { json2csv } from "json-2-csv";
 import { jupyterdataLoaderTemplate } from "./jupyterdataLoaderTemplate";
 
+
 const jupyterRouter = Router()
 
 jupyterRouter.put('/', async function(req, res) {
@@ -29,7 +30,7 @@ jupyterRouter.put('/', async function(req, res) {
       })
     })
     console.log(data)
-    const dl_lines = jupyterdataLoaderTemplate.dataloader.split("\n").map((line) => '"'+line+'\\n"')
+    const dl_lines = jupyterdataLoaderTemplate.dataloader.split("\n").map((line:string) => '"'+line+'\\n"')
     try {
         const folderAsList = __dirname.split("/")
         folderAsList.pop();
