@@ -33,6 +33,6 @@ export class ResultService {
       "participantID":`${participantIDName}`,
       "conditionIDs": conditionIDNames
     }
-    ).toPromise().then((data) => {return data})
+    ).toPromise().then((data) => {return data}).catch((err)=> console.log(err));
   }
 }

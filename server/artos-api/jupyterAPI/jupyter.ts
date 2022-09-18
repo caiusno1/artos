@@ -5,6 +5,7 @@ import { DataBaseService } from "../DataStructure/DataBaseService";
 import { returnOnFailure } from "../helpers/returnOnFailure";
 import { DB_Result } from "../DataStructure/DB_Result";
 import { json2csv } from "json-2-csv";
+import { jupyterdataLoaderTemplate } from "./jupyterdataLoaderTemplate";
 
 const jupyterRouter = Router()
 
@@ -28,10 +29,11 @@ jupyterRouter.put('/', async function(req, res) {
       })
     })
     console.log(data)
+    const dl_lines = jupyterdataLoaderTemplate.dataloader.split("\n").map((line) => '"'+line+'\\n"')
     try {
         const folderAsList = __dirname.split("/")
         folderAsList.pop();
-        const folder = folderAsList.join("/")    
+        const folder = folderAsList.join("/")  
         if(!existsSync(folder+"/jupyter/experiments")){
           mkdirSync(folder+"/jupyter/experiments");
         }
@@ -40,8 +42,8 @@ jupyterRouter.put('/', async function(req, res) {
         }
 
         writeFileSync(folder+`/jupyter/experiments/experiment${ID}/data.csv`,data)
-        writeFileSync(folder+`/jupyter/experiments/experiment${ID}/notebook.ipynb`, 
-        `{
+        writeFileSync(folder+`/jupyter/experiments/experiment${ID}/data.json`,JSON.stringify(results))
+        writeFileSync(folder+`/jupyter/experiments/experiment${ID}/notebook.ipynb`,`{
           "cells": [
            {
             "cell_type": "markdown",
@@ -57,8 +59,8 @@ jupyterRouter.put('/', async function(req, res) {
             "outputs": [],
             "source": [
              "import pandas as pd; \\n",
-             "import pymc3; import theano.tensor as tt; import arviz as az; \\n",
-             "from theano.tensor import cast\\n",
+             "import pymc as pm; import aesara.tensor as at; import arviz as az; \\n",
+             "from aesara.tensor import cast\\n",
              "import numpy as np; \\n",
              "import matplotlib.pyplot as plt"
             ]
@@ -69,15 +71,7 @@ jupyterRouter.put('/', async function(req, res) {
             "metadata": {},
             "outputs": [],
             "source": [
-             "data_file = 'data.csv'\\n",
-             "data = pd.read_csv(data_file)\\n",
-             "\\n",
-             "data = data.groupby([\\"<CND>\\", \\"SOA_IN_MS\\", \\"PARTICIPANT_NUMBER\\"], as_index=False).agg({'PROBE_FIRST_RESPONSE': ['sum','size']})\\n",
-             "data['Relative'] = data['PROBE_FIRST_RESPONSE']['sum']/data['PROBE_FIRST_RESPONSE']['size']\\n",
-             "data['reps'] = data['PROBE_FIRST_RESPONSE']['size']\\n",
-             "data['probe_first_count'] = data['PROBE_FIRST_RESPONSE']['sum']\\n",
-             "del data[\\"PROBE_FIRST_RESPONSE\\"]\\n",
-             "display(data)"
+             ${dl_lines.join(",\n")}
             ]
            },
            {
@@ -199,9 +193,9 @@ jupyterRouter.put('/', async function(req, res) {
           ],
           "metadata": {
            "kernelspec": {
-            "display_name": "Python 3 (ipykernel)",
+            "display_name": "Python + PYMC 4",
             "language": "python",
-            "name": "python3"
+            "name": "pymc4_env_3_10"
            },
            "language_info": {
             "codemirror_mode": {
@@ -220,8 +214,7 @@ jupyterRouter.put('/', async function(req, res) {
           "nbformat": 4,
           "nbformat_minor": 2
          }             
-        `
-        )
+        `)
         exec(`chmod 777 -R ${folder}/jupyter/experiments`, (error, stdout, stderr) => {
           if (error) {
               console.log(`error: ${error.message}`);
@@ -237,10 +230,9 @@ jupyterRouter.put('/', async function(req, res) {
       } catch (err) {
         console.error(err)
       }
+      
       res.send("success")
-      return
-      
-      
+      return   
 })
 
 export {jupyterRouter}
