@@ -63,7 +63,8 @@ jupyterRouter.put('/', async function(req, res) {
              "import pymc as pm; import aesara.tensor as at; import arviz as az; \\n",
              "from aesara.tensor import cast\\n",
              "import numpy as np; \\n",
-             "import matplotlib.pyplot as plt"
+             "import matplotlib.pyplot as plt",
+             "import json"
             ]
            },
            {

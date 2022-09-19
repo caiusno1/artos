@@ -1,10 +1,10 @@
 export class jupyterdataLoaderTemplate{
     static dataloader = `data = None
-with open('data/testDataHLnew.json') as f:
+with open('data.json') as f:
     datatxt = f.read()
-    datatxt = datatxt.replace(''{', '{')
-    datatxt = datatxt.replace('}'', '}')
-    datatxt = datatxt.replace(''', ''')
+    datatxt = datatxt.replace('\"{', '{')
+    datatxt = datatxt.replace('}\"', '}')
+    datatxt = datatxt.replace(\"'\", '\"')
     datatxt = datatxt.replace('True', 'true')
     datatxt = datatxt.replace('False', 'false')
     with open('data/HLdata2.json', 'w') as f2:
