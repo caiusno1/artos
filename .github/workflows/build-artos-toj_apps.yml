@@ -8,6 +8,7 @@ jobs:
   VRTOJ-build:
     name: VRTOJ Build Routine
     runs-on: ubuntu-latest
+    concurrency: unity_build
     steps:
       # Checkout
       - name: Checkout repository
@@ -47,6 +48,7 @@ jobs:
   RTOJ-build:
     name: RTOJ Build Routine
     runs-on: ubuntu-latest
+    concurrency: unity_build
     steps:
       # Checkout
       - name: Checkout repository
@@ -86,6 +88,7 @@ jobs:
   winbuild:
     name: Build for HoloLens
     runs-on: windows-2019
+    concurrency: unity_build
     steps:
       # Checkout
       - name: Checkout repository
