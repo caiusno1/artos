@@ -37,7 +37,7 @@ jobs:
       # Output
       - uses: actions/upload-artifact@v2
         with:
-          name: Build
+          name: VRTOJ
           path: build
 
       # Return License
@@ -76,7 +76,7 @@ jobs:
       # Output
       - uses: actions/upload-artifact@v2
         with:
-          name: Build
+          name: RTOJ
           path: build
 
       # Return License
@@ -114,7 +114,7 @@ jobs:
       # Output
       - uses: actions/upload-artifact@v2
         with:
-          name: Build
+          name: ARTOJ
           path: build
   
       # Return License
