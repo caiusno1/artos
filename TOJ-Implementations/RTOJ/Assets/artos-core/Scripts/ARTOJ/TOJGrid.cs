@@ -224,8 +224,17 @@ public class TOJGrid : MonoBehaviour
                     foreach(var stimulusRow in stimuli){
                         foreach(var stimulus in stimulusRow)
                         {
-                            var stimulusMeshRenderer = stimulus.GetComponentInChildren<SpriteRenderer>();
-                            stimulusMeshRenderer.sprite = defaultBackPlate;
+                            if (inR)
+                            {
+                                var stimulusMeshRenderer = stimulus.GetComponent<Image>();
+                                stimulusMeshRenderer.sprite = defaultBackPlate;
+                            }
+                            else
+                            {
+                                var stimulusMeshRenderer = stimulus.GetComponentInChildren<SpriteRenderer>();
+                                stimulusMeshRenderer.sprite = defaultBackPlate;
+                            }
+
                         }
                     }
                     closedCards = 24;
