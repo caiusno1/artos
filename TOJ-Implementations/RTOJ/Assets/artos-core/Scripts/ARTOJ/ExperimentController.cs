@@ -12,6 +12,7 @@ public class ExperimentController : MonoBehaviour
     public PlatformCondition platformCondition;
     //public string Condition;
     public ExperimentalSetup currentSetup;
+    public int FrameRate = 60 ;
     public List<Dictionary<string, object>> runtimeSetup;
     public List<GameObject> ExperimentalPositions;
     public bool shuffelOrder = false;
@@ -44,11 +45,11 @@ public class ExperimentController : MonoBehaviour
         if(Instance == null)
         {
             ExperimentController.Instance = this;
-            QualitySettings.vSyncCount = 0;
+            QualitySettings.vSyncCount = 1;
 
-            Application.targetFrameRate = 60;
+            Application.targetFrameRate = this.FrameRate;
 # if OCULUSINTEGRATION_PRESENT
-            OVRPlugin.systemDisplayFrequency = 60.0f;
+            OVRPlugin.systemDisplayFrequency = this.FrameRate *  1.0f;
 # endif
             StartCoroutine(GetParticipantID());
             // Taken from here https://stackoverflow.com/questions/17994935/how-to-get-unix-time-stamp-in-net

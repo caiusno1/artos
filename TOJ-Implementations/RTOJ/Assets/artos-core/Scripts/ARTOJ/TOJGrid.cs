@@ -38,7 +38,7 @@ public class TOJGrid : MonoBehaviour
 
     private List<List<int>> memoryLableMatrix = new List<List<int>>();
 
-    public List<Sprite> cardsInput;
+    public CardImages cardsConfiguration;
 
     public List<Sprite> cardsOnBoard;
 
@@ -59,7 +59,7 @@ public class TOJGrid : MonoBehaviour
     {
         cardsOnBoard = new List<Sprite>();
 
-        List<Sprite> currentCards = new List<Sprite>(cardsInput);
+        List<Sprite> currentCards = new List<Sprite>(cardsConfiguration.cards);
         currentCards.Shuffle();
         cardsOnBoard.AddRange(currentCards.GetRange(0,12));
         cardsOnBoard.AddRange(cardsOnBoard);
@@ -80,10 +80,11 @@ public class TOJGrid : MonoBehaviour
             stimuli[idx2].Add(child.gameObject);
             var color = cardsOnBoard[iteratorVar];
             memoryCardSpriteMatrix[idx2].Add(color);
-            child.gameObject.name = "" + cardsInput.IndexOf(color);
-            memoryLableMatrix[idx2].Add(cardsInput.IndexOf(color));
+            child.gameObject.name = "" + cardsConfiguration.cards.IndexOf(color);
+            memoryLableMatrix[idx2].Add(cardsConfiguration.cards.IndexOf(color));
             var tojGrid = this;
             var btnProxy = child.GetComponent<ButtonProxy>();
+            btnProxy.RemoveAllListeners();
             btnProxy.AddListener(new ButtonMemoryAction(child,this,color, child.gameObject.name).getListener);
             idx++;
             if(idx >= xaxisLength)

@@ -69,7 +69,8 @@ public class DefaultFlicker : MonoBehaviour
                     enabled = false;
                     this.callback.Invoke();
                 }
-                if(Time.deltaTime > 1 / 60)
+                if(Time.deltaTime > 1 / ExperimentController.GetInstance().FrameRate)
+
                 {
                     tooShort = true;
                 }
@@ -82,7 +83,7 @@ public class DefaultFlicker : MonoBehaviour
 
             if (FrameIdx == POSITIVE_SOA_IN_FRAMES - 1)
             {
-                if (Time.deltaTime > 1 / 60)
+                if (Time.deltaTime > 1 / ExperimentController.GetInstance().FrameRate)
                 {
                     if (tooShort)
                     {
@@ -92,6 +93,12 @@ public class DefaultFlicker : MonoBehaviour
                     {
                         tooLong = true;
                     }
+                }
+                else if(tooShort)
+                {
+                    POSITIVE_SOA_IN_FRAMES += 1;
+                    tooShort = false;
+                    this.soaDuration += Time.deltaTime;
                 }
             }
 
