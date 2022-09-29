@@ -1,4 +1,5 @@
 cd $PSScriptRoot
+git pull
 cd TOJ-Implementations/ARTOJ/Assets/artos-core
 git pull
 cd $PSScriptRoot

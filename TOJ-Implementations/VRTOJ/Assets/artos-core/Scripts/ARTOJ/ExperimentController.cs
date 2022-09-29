@@ -49,7 +49,7 @@ public class ExperimentController : MonoBehaviour
 
             Application.targetFrameRate = this.FrameRate;
 # if OCULUSINTEGRATION_PRESENT
-            OVRPlugin.systemDisplayFrequency = this.FrameRate *  1.0f;
+            OVRPlugin.systemDisplayFrequency = 60;
 # endif
             StartCoroutine(GetParticipantID());
             // Taken from here https://stackoverflow.com/questions/17994935/how-to-get-unix-time-stamp-in-net
@@ -136,7 +136,7 @@ public class ExperimentController : MonoBehaviour
     {
         if(ExperimentalPositions.Count  > 0)
         {
-            StartCoroutine(tutorialMngt.SetParticipantName(this.CurrentParticipantIdentifier, this.CurrentParticipantUID));
+            tutorialMngt.SetParticipantName(this.CurrentParticipantIdentifier, this.CurrentParticipantUID);
             this.currentPosition = 0;
             ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].transform.GetChild(0).gameObject.SetActive(true);
             leftBtn = ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].GetComponentInChildren<TOJGrid>().leftBtn;
@@ -188,9 +188,8 @@ public class ExperimentController : MonoBehaviour
             Debug.Log(www.downloadHandler.text);
             ParticipantData participantData = JsonUtility.FromJson<ParticipantData>(www.downloadHandler.text);
             this.CurrentParticipantUID = participantData.ID;
-
-            this.CurrentParticipantUID = participantData.ID;
             this.CurrentParticipantIdentifier = participantData.name;
+            this.tutorialMngt.SetParticipantName( this.CurrentParticipantIdentifier, this.CurrentParticipantUID);
             this.participantSet = true;
         }
     }

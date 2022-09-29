@@ -586,6 +586,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3985705726925103110, guid: fdd920c737b0b7d409e2132ae470d89c, type: 3}
+      propertyPath: cardsConfiguration
+      value: 
+      objectReference: {fileID: 11400000, guid: e5a981483b2f4194da1854c474a1019d, type: 2}
+    - target: {fileID: 3985705726925103110, guid: fdd920c737b0b7d409e2132ae470d89c, type: 3}
       propertyPath: cardsInput.Array.size
       value: 12
       objectReference: {fileID: 0}

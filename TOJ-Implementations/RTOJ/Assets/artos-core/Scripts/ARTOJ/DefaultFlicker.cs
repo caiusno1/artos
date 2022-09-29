@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class DefaultFlicker : MonoBehaviour
 {
@@ -19,8 +20,7 @@ public class DefaultFlicker : MonoBehaviour
     private int POSITIVE_SOA_IN_FRAMES = 0;
     private bool tojStarted = false;
     private float soaDuration = -1;
-    private bool tooShort = false;
-    private bool tooLong = false;
+    private bool invalid = false;
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +36,7 @@ public class DefaultFlicker : MonoBehaviour
             if (FrameIdx == 0)
             {
                 this.soaDuration = 0;
-                tooShort = false;
-                tooLong = false;
+                invalid = false;
                 if (SOA_IN_FRAMES < 0)
                 {
                     probeHidable.active = false;
@@ -69,44 +68,36 @@ public class DefaultFlicker : MonoBehaviour
                     enabled = false;
                     this.callback.Invoke();
                 }
-                if(Time.deltaTime > 1 / ExperimentController.GetInstance().FrameRate)
-
+                if(Time.deltaTime > 1 / 60)
                 {
-                    tooShort = true;
+                    Debug.Log("Too Short!");
+                    invalid = true;
                 }
             }
 
-            if(FrameIdx > 0 && FrameIdx <= POSITIVE_SOA_IN_FRAMES)
+            if (FrameIdx > 1 && FrameIdx <= POSITIVE_SOA_IN_FRAMES+1)
             {
                 this.soaDuration += Time.deltaTime;
-            }
-
-            if (FrameIdx == POSITIVE_SOA_IN_FRAMES - 1)
-            {
-                if (Time.deltaTime > 1 / ExperimentController.GetInstance().FrameRate)
-                {
-                    if (tooShort)
-                    {
-                        tooShort = false;
-                    }
-                    else
-                    {
-                        tooLong = true;
-                    }
-                }
-                else if(tooShort)
-                {
-                    POSITIVE_SOA_IN_FRAMES += 1;
-                    tooShort = false;
-                    this.soaDuration += Time.deltaTime;
-                }
             }
 
 
             if (FrameIdx == POSITIVE_SOA_IN_FRAMES)
             {
-                
-                if (SOA_IN_FRAMES < 0)
+
+                if (Time.deltaTime > 1 / 60)
+                {
+                    if (invalid)
+                    {
+                        Debug.Log("Too Short recovered!");
+                        invalid = false;
+                    }
+                    else
+                    {
+                        Debug.Log("Too Long!");
+                        invalid = true;
+                    }
+                }
+                else if (SOA_IN_FRAMES < 0)
                 {
                     refHidable.active = false;
                 }
@@ -123,8 +114,7 @@ public class DefaultFlicker : MonoBehaviour
                 }
                 else if (SOA_IN_FRAMES > 0)
                 {
-                    probeHidable.active = true ;
-                    
+                    probeHidable.active = true ;               
                 }
                 reference = null;
                 probe = null;
@@ -133,7 +123,9 @@ public class DefaultFlicker : MonoBehaviour
                 refHidable = null;
                 Debug.Log(this.soaDuration);
                 ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].soaDuration = this.soaDuration;
-                ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].valid = !tooShort && !tooLong;
+                ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].valid = !invalid;
+                if(XRStats.TryGetDroppedFrameCount(out int value))
+                    Debug.Log("Dropped Frames:"+value);
                 Debug.Log(ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1]);
                 this.callback.Invoke();
             }

@@ -50,9 +50,8 @@ public class TutorialManager : MonoBehaviour
         ExperimentController.GetInstance().state = StateMachine.StartFired;
     }
 
-    internal IEnumerator SetParticipantName(string name, int iD)
+    public void SetParticipantName(string name, int iD)
     {
-        yield return new WaitUntil(() => ExperimentController.GetInstance().participantSet);
         if(inR)
         {
             startBtn.GetComponentInChildren<TMP_Text>().text = "Start Experiment (" + name + ";" + iD + ")";
