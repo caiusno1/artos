@@ -73,4 +73,4 @@ crashlytics-build.properties
 
 # Own ignores
 Assets/Score and Times - Game Sound Solutions
-Assets/Packages/com.ptc.vuforia.engine-10.10.2.tgz
+**/com.ptc.vuforia.engine-10.10.2.tgz
