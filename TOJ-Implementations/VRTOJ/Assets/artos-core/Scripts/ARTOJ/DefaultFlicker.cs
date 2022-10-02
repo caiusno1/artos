@@ -21,6 +21,7 @@ public class DefaultFlicker : MonoBehaviour
     private bool tojStarted = false;
     private float soaDuration = -1;
     private bool invalid = false;
+    private float SOAStartTime = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +51,7 @@ public class DefaultFlicker : MonoBehaviour
                     probeHidable.active = false;
                     refHidable.active = false;
                 }
+                SOAStartTime = Time.time;
             }
             else if (FrameIdx == 2)
             {
@@ -68,36 +70,17 @@ public class DefaultFlicker : MonoBehaviour
                     enabled = false;
                     this.callback.Invoke();
                 }
-                if(Time.deltaTime > 1 / 60)
+                if(Time.time-SOAStartTime > 1 / 60)
                 {
                     Debug.Log("Too Short!");
                     invalid = true;
                 }
             }
 
-            if (FrameIdx > 1 && FrameIdx <= POSITIVE_SOA_IN_FRAMES+1)
-            {
-                this.soaDuration += Time.deltaTime;
-            }
-
-
             if (FrameIdx == POSITIVE_SOA_IN_FRAMES)
             {
-
-                if (Time.deltaTime > 1 / 60)
-                {
-                    if (invalid)
-                    {
-                        Debug.Log("Too Short recovered!");
-                        invalid = false;
-                    }
-                    else
-                    {
-                        Debug.Log("Too Long!");
-                        invalid = true;
-                    }
-                }
-                else if (SOA_IN_FRAMES < 0)
+                this.soaDuration = Time.time - SOAStartTime;
+                if (SOA_IN_FRAMES < 0)
                 {
                     refHidable.active = false;
                 }
@@ -121,11 +104,11 @@ public class DefaultFlicker : MonoBehaviour
                 enabled = false;
                 probeHidable = null;
                 refHidable = null;
+                SOAStartTime = -1;
                 Debug.Log(this.soaDuration);
                 ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].soaDuration = this.soaDuration;
+                ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].realSOA = Mathf.CeilToInt(this.soaDuration / (1/60));
                 ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].valid = !invalid;
-                if(XRStats.TryGetDroppedFrameCount(out int value))
-                    Debug.Log("Dropped Frames:"+value);
                 Debug.Log(ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1]);
                 this.callback.Invoke();
             }
