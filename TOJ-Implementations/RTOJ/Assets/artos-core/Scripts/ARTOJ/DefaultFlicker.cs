@@ -22,6 +22,7 @@ public class DefaultFlicker : MonoBehaviour
     private float soaDuration = -1;
     private bool invalid = false;
     private float SOAStartTime = -1;
+    private float SOAEndTime = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -106,6 +107,8 @@ public class DefaultFlicker : MonoBehaviour
                 refHidable = null;
                 SOAStartTime = -1;
                 Debug.Log(this.soaDuration);
+                ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].SOAStartTime = this.SOAStartTime;
+                ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].SOAEndTime = this.SOAEndTime;
                 ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].soaDuration = this.soaDuration;
                 ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].realSOA = Mathf.CeilToInt(this.soaDuration / (1/60));
                 ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].valid = !invalid;
