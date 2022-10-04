@@ -208,10 +208,10 @@ public class TOJGrid : MonoBehaviour
             currentTrial.boardPositions = board;
             // 3 miliseconds difference between planed soa and actual soa is an arbitrary threshold :)
             //currentTrial.valid = Math.Abs(Math.Abs(currentTrial.soa)*1/60 - currentTrial.soaDuration) == 0;
-            if (!currentTrial.valid && currentTrial.mode != "tutorial")
+            /*if (!currentTrial.valid && currentTrial.mode != "tutorial")
             {
                 ExperimentController.GetInstance().runtimeSetup.Add(ExperimentController.GetInstance().CurrentCondition);
-            }
+            }*/
             ExperimentController.GetInstance().sendResult();
             yield return new WaitForSeconds(1);
             if (tojGrid.firstCardID.Equals(tojGrid.secondCardID))
