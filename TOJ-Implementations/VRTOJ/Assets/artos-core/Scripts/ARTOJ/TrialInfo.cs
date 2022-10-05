@@ -13,7 +13,7 @@ public class TrialInfo
     public int firstSelectedPosition;
     public int secondSelectedPosition;
     public bool valid;
-    public int realSOA;
+    public float realSOA;
     public float SOAStartTime;
     public float SOAEndTime;
     public string toJSON()
