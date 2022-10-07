@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ARTOJ-MRTK.unity
     guid: 58d1227a9b3deed4e9bcf0304737b9b4
   m_configObjects:
-    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: fa964ac19d614d7488999e68462056dc, type: 2}
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 577c60cefc846594b88614a14c6967ed, type: 2}
-    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: f4c397f65cd5707479951184527f0c87, type: 2}
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: fa964ac19d614d7488999e68462056dc,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 577c60cefc846594b88614a14c6967ed,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: f4c397f65cd5707479951184527f0c87,
+      type: 2}
