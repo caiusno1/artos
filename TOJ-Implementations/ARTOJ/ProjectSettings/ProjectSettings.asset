@@ -142,6 +142,8 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 6012588278978025526, guid: 577c60cefc846594b88614a14c6967ed, type: 2}
   - {fileID: 8215841558833085787, guid: f4c397f65cd5707479951184527f0c87, type: 2}
   metroInputSource: 0
@@ -943,10 +945,10 @@ PlayerSettings:
       PointOfService: False
       RecordedCallsFolder: False
       Contacts: False
+      Proximity: False
       InternetClient: True
       CodeGeneration: False
       BackgroundMediaPlayback: False
-      Proximity: False
   metroTargetDeviceFamilies:
     Desktop: False
     Holographic: True
