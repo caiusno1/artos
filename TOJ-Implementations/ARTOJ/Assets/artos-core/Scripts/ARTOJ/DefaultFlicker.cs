@@ -23,11 +23,12 @@ public class DefaultFlicker : MonoBehaviour
     private bool invalid = false;
     private float SOAStartTime = -1;
     private float SOAEndTime = -1;
+    private int framerate = 60;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.framerate = ExperimentController.GetInstance().FrameRate;
     }
 
     // Update is called once per frame
@@ -52,10 +53,11 @@ public class DefaultFlicker : MonoBehaviour
                     probeHidable.active = false;
                     refHidable.active = false;
                 }
-                SOAStartTime = Time.time;
+                this.SOAStartTime = Time.time;
             }
             else if (FrameIdx == 2)
             {
+                this.soaDuration = Time.deltaTime;
                 if (SOA_IN_FRAMES < 0)
                 {
                     probeHidable.active = true;
@@ -71,16 +73,15 @@ public class DefaultFlicker : MonoBehaviour
                     enabled = false;
                     this.callback.Invoke();
                 }
-                if(Time.time-SOAStartTime > 1 / 60)
-                {
-                    Debug.Log("Too Short!");
-                    invalid = true;
-                }
+            }
+
+            if(FrameIdx > 1 && FrameIdx <= POSITIVE_SOA_IN_FRAMES)
+            {
+                this.soaDuration += Time.deltaTime;
             }
 
             if (FrameIdx == POSITIVE_SOA_IN_FRAMES)
             {
-                this.soaDuration = Time.time - SOAStartTime;
                 if (SOA_IN_FRAMES < 0)
                 {
                     refHidable.active = false;
@@ -89,6 +90,7 @@ public class DefaultFlicker : MonoBehaviour
                 {
                     probeHidable.active = false;
                 }
+                this.SOAEndTime = Time.time;
             }
             else if(FrameIdx == POSITIVE_SOA_IN_FRAMES + 2)
             {
@@ -105,12 +107,11 @@ public class DefaultFlicker : MonoBehaviour
                 enabled = false;
                 probeHidable = null;
                 refHidable = null;
-                SOAStartTime = -1;
                 Debug.Log(this.soaDuration);
                 ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].SOAStartTime = this.SOAStartTime;
                 ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].SOAEndTime = this.SOAEndTime;
                 ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].soaDuration = this.soaDuration;
-                ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].realSOA = Mathf.CeilToInt(this.soaDuration / (1/60));
+                ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].realSOA = this.SOAEndTime - this.SOAStartTime;
                 ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].valid = !invalid;
                 Debug.Log(ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1]);
                 this.callback.Invoke();

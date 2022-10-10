@@ -45,12 +45,16 @@ public class ExperimentController : MonoBehaviour
         if(Instance == null)
         {
             ExperimentController.Instance = this;
-            QualitySettings.vSyncCount = 1;
 
+#if UNITY_EDITOR
             Application.targetFrameRate = this.FrameRate;
-# if OCULUSINTEGRATION_PRESENT
-            OVRPlugin.systemDisplayFrequency = 60;
-# endif
+            QualitySettings.vSyncCount = 1;
+#elif OCULUSINTEGRATION_PRESENT && UNITY_ANDROID
+            OVRPlugin.systemDisplayFrequency = this.FrameRate;
+#else
+            Application.targetFrameRate = this.FrameRate;
+            QualitySettings.vSyncCount = 1;
+#endif
             StartCoroutine(GetParticipantID());
             // Taken from here https://stackoverflow.com/questions/17994935/how-to-get-unix-time-stamp-in-net
             timeStamp = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds;
