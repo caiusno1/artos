@@ -40,6 +40,7 @@ public class ExperimentController : MonoBehaviour
     public GameObject tutorialFinishedBanner;
     public List<int> repetitionsPerSOA = new List<int>(){24,24,32,32,48,48,48,32,32,24,24};
     public bool participantSet = false;
+    public bool quickMode = false;
     private void Awake()
     {
         if(Instance == null)
@@ -226,7 +227,17 @@ public class ExperimentController : MonoBehaviour
         applyPoints(result);
         if (currentPosition < runtimeSetup.Count)
         {
-            ExperimentController.GetInstance().state = StateMachine.MemoryChoseFirst;
+            if (quickMode)
+            {
+                sendResult();
+                this.state = StateMachine.TOJ_READY;
+                this.NextExperiment();
+            }
+            else
+            {
+                this.state = StateMachine.MemoryChoseFirst;
+            }
+
         }
         else
         {
@@ -266,7 +277,16 @@ public class ExperimentController : MonoBehaviour
         applyPoints(result);
         if (currentPosition < runtimeSetup.Count)
         {
-            ExperimentController.GetInstance().state = StateMachine.MemoryChoseFirst;
+            if (quickMode)
+            {
+                this.sendResult();
+                this.state = StateMachine.TOJ_READY;
+                this.NextExperiment();
+            }
+            else
+            {
+                this.state = StateMachine.MemoryChoseFirst;
+            }
         }
         else
         {
@@ -290,7 +310,7 @@ public class ExperimentController : MonoBehaviour
             this.state = StateMachine.TutorialFinished;
             StartCoroutine(TutorialFinishedDisplay());
         }
-        if(this.currentPosition < runtimeSetup.Count - 1)
+        else if(this.currentPosition < runtimeSetup.Count - 1)
         {
             this.currentPosition++;
             var trial = new TrialInfo();
@@ -300,8 +320,10 @@ public class ExperimentController : MonoBehaviour
                 trial.soa = (int)csoa;
             }
             trialLog.Add(trial);
-            ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].transform.GetChild(0).gameObject.SetActive(false);
-            this.currentPosition++;
+            if(this.currentPosition > 0)
+            {
+                ExperimentalPositions[(this.currentPosition - 1) % ExperimentalPositions.Count].transform.GetChild(0).gameObject.SetActive(false);
+            }
             ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].transform.GetChild(0).gameObject.SetActive(true);
             leftBtn = ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].GetComponentInChildren<TOJGrid>().leftBtn;
             rightBtn = ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].GetComponentInChildren<TOJGrid>().rightBtn;

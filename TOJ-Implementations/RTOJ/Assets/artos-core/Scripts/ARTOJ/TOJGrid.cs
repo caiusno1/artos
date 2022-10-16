@@ -157,6 +157,13 @@ public class TOJGrid : MonoBehaviour
         yield return new WaitForSecondsRealtime(1);
         flicker.callTOJ(soa, stimuli[probeY][probeX], stimuli[refY][refX], () => {
             InputEnabledCallback.Invoke();
+            var board = new int[4][];
+            board[0] = memoryLableMatrix[0].ToArray();
+            board[1] = memoryLableMatrix[1].ToArray();
+            board[2] = memoryLableMatrix[2].ToArray();
+            board[3] = memoryLableMatrix[3].ToArray();
+            var currentTrial = ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1];
+            currentTrial.boardPositions = board;
         });
     }
     private IEnumerator ExecuteWholeExperiment(List<Dictionary<string,object>> conditions)
@@ -200,12 +207,12 @@ public class TOJGrid : MonoBehaviour
             ExperimentController.GetInstance().state = StateMachine.MemoryDelayBeforeTOJ;
             currentTrial.firstSelectedPosition = tojGrid.firstCardGO.transform.GetSiblingIndex();
             currentTrial.secondSelectedPosition = tojGrid.secondCardGO.transform.GetSiblingIndex();
-            var board = new int[4][];
+            /*var board = new int[4][];
             board[0] = memoryLableMatrix[0].ToArray();
             board[1] = memoryLableMatrix[1].ToArray();
             board[2] = memoryLableMatrix[2].ToArray();
             board[3] = memoryLableMatrix[3].ToArray();
-            currentTrial.boardPositions = board;
+            currentTrial.boardPositions = board;*/
             // 3 miliseconds difference between planed soa and actual soa is an arbitrary threshold :)
             //currentTrial.valid = Math.Abs(Math.Abs(currentTrial.soa)*1/60 - currentTrial.soaDuration) == 0;
             /*if (!currentTrial.valid && currentTrial.mode != "tutorial")
