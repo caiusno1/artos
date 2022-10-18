@@ -1,0 +1,61 @@
+ManifestFileVersion: 0
+CRC: 2648581201
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 888c09783ee7ec185814bc930216c988
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: b1f6f32f5794f860dad684df25786a89
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 20
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Oculus/VR/Meshes/OculusTouchForQuest2/OculusTouchForQuest2_Right.fbx
+- Assets/Oculus/VR/Meshes/OculusTouchForQuestAndRiftS/OculusTouchForQuestAndRiftS_Left.fbx
+- Assets/Oculus/VR/Meshes/OculusTouchForQuest2/OculusTouchForQuest2_Left.fbx
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Meshes/Sliders/Volumetric_UI_Components.fbx
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Controllers/DebugControllers/Models/GizmoLeft.fbx
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Meshes/Cursors/Cursor_Rest_geo.fbx
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Meshes/Cursors/Cursor_Press_geo.fbx
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Models/MRTK_FingerTipCursor.fbx
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Meshes/Cursors/Cursor_RotateArrows_geo.fbx
+- Assets/Oculus/VR/Meshes/OculusTouchForQuestAndRiftS/OculusTouchForQuestAndRiftS_Right.fbx
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Prefabs/RiggedHandVisualizer/R_Hand_MRTK_Rig.fbx
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Prefabs/RiggedHandVisualizer/L_Hand_MRTK_Rig.fbx
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Meshes/Cursors/Cursor_Focus_geo.fbx
+- Assets/Oculus/VR/Meshes/OculusTouchForRift/left_touch_controller_model_skel.fbx
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Meshes/HolographicButton/CompoundButtonMeshes.fbx
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Controllers/DebugControllers/Models/GizmoRight.fbx
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Meshes/Cursors/TeleportCursor.fbx
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Meshes/Cursors/Cursor_MoveArrows_geo.fbx
+- Assets/Oculus/VR/Meshes/OculusTouchForRift/right_touch_controller_model_skel.fbx
+Dependencies:
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_mat0
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_mat1

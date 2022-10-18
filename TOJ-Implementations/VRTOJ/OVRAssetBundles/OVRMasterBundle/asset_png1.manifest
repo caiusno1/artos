@@ -1,0 +1,48 @@
+ManifestFileVersion: 0
+CRC: 759577255
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b8a3814b8f20d21c7c28ce9175452520
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c21d61fe394c58399df3c6fb5c7c99b3
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/artos-core/Models/tablet-texture.png
+- Assets/artos-core/Materials/MemoryCards/default.png
+- Assets/artos-core/Materials/MemoryCards/windrad.png
+- Assets/artos-core/Materials/MemoryCards/pferd.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconCamera.png
+- Assets/artos-core/Materials/MemoryCards/yellowround.png
+- Assets/artos-core/Materials/MemoryCards/halbesBoot.png
+- Assets/artos-core/Materials/MemoryCards/fuchs.png
+- Packages/com.microsoft.mixedreality.toolkit.standardassets/Textures/DefaultPointerDottedLine.png
+- Assets/artos-core/Materials/MemoryCards/blau.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconSpatialMapping.png
+- Assets/artos-core/Materials/MemoryCards/wallnuss.png
+- Assets/artos-core/Materials/MemoryCards/magarithe.png
+- Assets/artos-core/Materials/MemoryCards/kind.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconHome.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconMessage.png
+- Assets/artos-core/Materials/MemoryCards/tree.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconHide.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconAdjust.png
+- Assets/artos-core/Materials/MemoryCards/blumen.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconClose.png
+- Assets/artos-core/Materials/MemoryCards/schach.png
+- Assets/artos-core/Materials/MemoryCards/gruseligerJunge.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconSearch.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconAdd.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconHandMesh.png
+- Packages/com.microsoft.mixedreality.toolkit.standardassets/Textures/MouseCursor.png
+- Assets/artos-core/Materials/MemoryCards/zweiEulen.png
+- Assets/artos-core/Materials/MemoryCards/schiff.png
+- Assets/artos-core/Materials/MemoryCards/gelb.png
+Dependencies: []

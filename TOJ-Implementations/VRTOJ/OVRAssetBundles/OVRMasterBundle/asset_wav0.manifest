@@ -1,0 +1,22 @@
+ManifestFileVersion: 0
+CRC: 1463590633
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 623e8191c8a82e8240515bca7af6252e
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.microsoft.mixedreality.toolkit.standardassets/Audio/MRTK_ButtonUnpress.wav
+- Assets/Sound/Score and Times - Game Sound Solutions/8 bits/beep_2_e.wav
+- Assets/Sound/Score and Times - Game Sound Solutions/8 bits/coin_1_a.wav
+- Packages/com.microsoft.mixedreality.toolkit.standardassets/Audio/MRTK_Manipulation_Start.wav
+- Packages/com.microsoft.mixedreality.toolkit.standardassets/Audio/MRTK_Select_Main.wav
+- Packages/com.microsoft.mixedreality.toolkit.standardassets/Audio/MRTK_ButtonPress.wav
+Dependencies: []

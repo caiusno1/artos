@@ -1,0 +1,86 @@
+ManifestFileVersion: 0
+CRC: 3237613639
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: a2ca2b029db16b8916015c2f2e38a79e
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 887c108af17ff0a757281951f836a03c
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 90
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1287d4d138a242f794bcfc01354d3ae2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 61e55d5030302974a867024ab486d306, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 04b1ba3412a235c4d8c3eb2a18528b67, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 230678194b2c0d540b2607de22dd64cf, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9c523107adbf4a9b8ca63b83f2f89aba, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ef91a627a11b4a22b41dd9109dfd8703, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4233079c121f47709403b0bd2f99a156, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9f0601d0cb497ac4a95c6f4b33459229, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 45d3baa0a5986c24cbf0a6f6dcef2ec7, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9296b71443954db1b4571935a43e5266, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 2a969079783d81144bce7e89bd03ac89, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 120
+  Script: {instanceID: 0}
+- Class: 137
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Input.AnimatedCursorContextData
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Input.AnimatedCursorStateData
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Input.MixedRealityInputAction
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Utilities.AnimatorParameter
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Utilities.BezierDataProvider/BezierPointSet
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Utilities.ProximityLight/LightSettings
+Assets:
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Prefabs/Cursors/TeleportCursor.prefab
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Prefabs/RiggedHandVisualizer/RiggedHandLeft.prefab
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Prefabs/Cursors/DefaultGazeCursor.prefab
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Prefabs/Pointers/MousePointer.prefab
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Prefabs/Cursors/CursorMoveArrowsMove.prefab
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Prefabs/Cursors/CursorMoveArrowsNorthSouth.prefab
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Controllers/DebugControllers/GizmoLeft.prefab
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Prefabs/Hands/HandJointSphere.prefab
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Prefabs/Pointers/ShellHandRayPointer.prefab
+Dependencies:
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_controller0
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_fbx0
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_mat0
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_mat1
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_prefab0

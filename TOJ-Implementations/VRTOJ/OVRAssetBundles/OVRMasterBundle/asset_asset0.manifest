@@ -1,0 +1,169 @@
+ManifestFileVersion: 0
+CRC: 1141933849
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 09787946e67ac1d7e2724d0a479ddb03
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2e70119e2e774811cfd3e858dbd4202c
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 19f279aded72cb741b4de89a54359dd4, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: db393d206eab4604ab74278cb6cda355, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7612acbc1a4a4ed0afa5f4ccbe42bee4, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d0f53b7a20151524496349154c40c679, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c33e3b76d6c5c0e48bb3b6ee686c7fd6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b71cb900fa9dec5488df2deb180db58f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3e721f74104fc5e498856a7c337d6632, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7554812f08ec49e694a8d9d4ee235a9c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a4a1c93114e9437cb75d8b3ee4e0e1ba, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d561f5f963b45674aa423435fb820879, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: baa83bab7d2b3224dbfee711eee0ce43, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d1a15d870c8b4e52acc4643bd258ed6e, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 78a4b02a0d9e7044fa19c6d432d0cafa, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4f726b4cb3605994fac74d508110ec62, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8c2d00f2d26cc124caed106ffbfe3f06, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: b81dae1d46879b444aa9847f7961649f, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: cb41c8335e2ca96449f3991db5fa5702, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 8275efdbe76bdff49a97a8e82fba118d, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1f18fec9b55c4f818e284af454161962, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 514da61389c049c0bdaf31b7f6970d33, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 3193d07953d1c3e44ad7ad26908fe6b2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: ee54661ca8af487c9db40e57d479fa48, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a794cc45c30a79b4da55bfd426876503, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1a1cf5fd47e548e6a23bdd3ddcc00cf6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e7e7db9a2688ed540af9819c456ba2e2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: eebbca41bb0b40d298ef201735d08616, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 9fd6338e77774badb73a2b1320b41caf, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 911a2adf038f97f409f65152dd6ec5e9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: eb34db37e954fb14ebfb936fc32a4eea, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Microsoft.MixedReality.Toolkit.SDK
+  ClassName: Microsoft.MixedReality.Toolkit.UI.ButtonIconSet/CharIcon
+- AssemblyName: Microsoft.MixedReality.Toolkit.SDK
+  ClassName: Microsoft.MixedReality.Toolkit.UI.State
+- AssemblyName: Microsoft.MixedReality.Toolkit.SDK
+  ClassName: Microsoft.MixedReality.Toolkit.UI.ThemeDefinition
+- AssemblyName: Microsoft.MixedReality.Toolkit.SDK
+  ClassName: Microsoft.MixedReality.Toolkit.UI.ThemeProperty
+- AssemblyName: Microsoft.MixedReality.Toolkit.SDK
+  ClassName: Microsoft.MixedReality.Toolkit.UI.ThemePropertyValue
+- AssemblyName: Microsoft.MixedReality.Toolkit.SDK
+  ClassName: Microsoft.MixedReality.Toolkit.UI.ThemeStateProperty
+- AssemblyName: Microsoft.MixedReality.Toolkit.SDK
+  ClassName: Microsoft.MixedReality.Toolkit.Utilities.Easing
+- AssemblyName: Microsoft.MixedReality.Toolkit.Services.InputSimulation
+  ClassName: Microsoft.MixedReality.Toolkit.Input.KeyBinding
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Input.MixedRealityControllerMapping
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Input.MixedRealityControllerVisualizationSetting
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Input.MixedRealityInputAction
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Input.MixedRealityInputDataProviderConfiguration
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Input.MixedRealityInteractionMapping
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Input.PointerOption
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Input.SpeechCommands
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.SceneSystem.MixedRealitySceneSystemProfile/CachedLightingSettings
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.SceneSystem.RuntimeLightingSettings
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.SceneSystem.RuntimeRenderSettings
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.SceneSystem.RuntimeSunlightSettings
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.SceneSystem.SceneInfo
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.SpatialAwareness.MixedRealitySpatialObserverConfiguration
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Utilities.ExperienceScale
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Utilities.SystemType
+Assets:
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealityRegisteredServiceProvidersProfile.asset
+- Assets/artos-core/Scripts/ARTOJ/ExperimentalSetups/Conditions/SOA_IN_FRAMES.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/Providers/WindowsMixedReality/Shared/Profiles/DefaultWindowsMixedRealityCameraSettingsProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Buttons/DefaultIconSet.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealityInputRecordingProfile.asset
+- Assets/MixedRealityToolkit.Generated/CustomProfiles/New MixedRealityToolkitConfigurationProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealityControllerMappingProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealityDiagnosticsProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Interactable/Themes/PressableButtonFrontPlate.asset
+- Assets/artos-core/Materials/MemoryCards/CardsSetup.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Interactable/States/FocusPressTouchGrabStates.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealitySceneSystemProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealityInputSimulationProfile.asset
+- Assets/artos-core/Scripts/ARTOJ/ExperimentalSetups/ExperimentalSetup 1.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealitySpatialAwarenessMeshObserverProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealityBoundaryVisualizationProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealityToolkitExperienceSettingsProfile.asset
+- Assets/artos-core/Scripts/ARTOJ/ExperimentalSetups/AR_TOJ_1.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealityInputSystemProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealitySpatialAwarenessSystemProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/Providers/OpenXR/Profiles/DefaultOpenXRCameraSettingsProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealitySpeechCommandsProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealityInputActionRulesProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealityControllerVisualizationProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealityInputActionsProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/Providers/Oculus/XRSDK/Profiles/DefaultOculusXRSDKDeviceManagerProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealityHandTrackingProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealityInputPointerProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Interactable/Themes/HolographicButtonSeeItSayItLabel.asset
+- Assets/artos-core/Scripts/ARTOJ/ExperimentalSetups/Conditions/SOA_ALL1.asset
+Dependencies:
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_asset1
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_mat0
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_mat1
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_png0
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_png1
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_png2
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_prefab0
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_prefab1
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_psd0

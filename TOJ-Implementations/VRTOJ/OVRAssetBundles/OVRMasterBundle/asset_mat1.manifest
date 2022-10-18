@@ -1,0 +1,29 @@
+ManifestFileVersion: 0
+CRC: 3466103073
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d42d3ab99c90807bc3bf9a8722e00345
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 82515b3694a1e5beae009c48c1198c34
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Meshes/Cursors/Materials/Light.mat
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Materials/MRTK_PressableInteractablesButtonBox.mat
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Materials/MRTK_ArticulatedHandMesh.mat
+- Packages/com.microsoft.mixedreality.toolkit.standardassets/Materials/MRTK_Standard_Yellow.mat
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Interactable/Materials/HolographicButtonContentCageProximity.mat
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Materials/MouseCursor.mat
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Materials/Teleport/TeleportBase.mat
+Dependencies:
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_png1
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_shader0

@@ -1,0 +1,48 @@
+ManifestFileVersion: 0
+CRC: 968486249
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: a25ba84a472ee0e87b7b29ba286cc7ea
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c21d61fe394c58399df3c6fb5c7c99b3
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/artos-core/Materials/MemoryCards/ball.png
+- Assets/artos-core/Materials/MemoryCards/baum.png
+- Assets/artos-core/Materials/MemoryCards/king.png
+- Assets/artos-core/Materials/MemoryCards/ente.png
+- Assets/Oculus/VR/Textures/HandTracking/HandTracking_uvmap_2048.png
+- Packages/com.microsoft.mixedreality.toolkit.standardassets/Icons/settings_icon.png
+- Assets/artos-core/Materials/MemoryCards/lion.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconFollowMe.png
+- Assets/artos-core/Materials/MemoryCards/bird.png
+- Assets/artos-core/Materials/MemoryCards/stifte.png
+- Assets/artos-core/Materials/MemoryCards/gruseligeBlume.png
+- "Assets/artos-core/Materials/MemoryCards/kleinesM\xE4dchenZopf.png"
+- Packages/com.microsoft.mixedreality.toolkit.standardassets/Textures/IridescentSpectrum.png
+- Assets/artos-core/Materials/MemoryCards/uhu.png
+- Assets/artos-core/Materials/MemoryCards/zitrone.png
+- Assets/artos-core/Materials/MemoryCards/ravensburg.png
+- Assets/artos-core/Materials/MemoryCards/seerose.png
+- Assets/artos-core/Materials/MemoryCards/halberApfel.png
+- Assets/artos-core/Materials/MemoryCards/hampelMann.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconDone.png
+- Assets/Oculus/VR/Textures/OculusTouchForRift/touchController_albedo.png
+- Assets/artos-core/Materials/MemoryCards/obstundgemuese.png
+- Assets/artos-core/Materials/MemoryCards/tree-arrow.png
+- Assets/artos-core/Materials/MemoryCards/schmetterling.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconProfiler.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconHandRay.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconStar.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconRefresh.png
+- Assets/artos-core/Materials/MemoryCards/red-back.png
+- Assets/artos-core/Materials/MemoryCards/ananas.png
+Dependencies: []

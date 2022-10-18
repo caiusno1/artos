@@ -1,0 +1,33 @@
+ManifestFileVersion: 0
+CRC: 2707441557
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f1960c50bcb66cd831c16285fc9878e8
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c21d61fe394c58399df3c6fb5c7c99b3
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconSettings.png
+- Assets/artos-core/Materials/MemoryCards/beeren-blatt.png
+- Assets/artos-core/Materials/MemoryCards/schnecke.png
+- Assets/artos-core/Materials/MemoryCards/yellowFish.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconDot.png
+- "Assets/artos-core/Materials/MemoryCards/wei\xDFesKaninchen.png"
+- Assets/artos-core/Materials/MemoryCards/vogel.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconHandJoint.png
+- Assets/artos-core/Materials/MemoryCards/Kirche.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconShow.png
+- Assets/artos-core/Materials/MemoryCards/schornstein.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconPin.png
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Textures/IconMicrophone.png
+- Assets/artos-core/Materials/MemoryCards/strawberry.png
+- Assets/artos-core/Materials/MemoryCards/benjamin.png
+Dependencies: []

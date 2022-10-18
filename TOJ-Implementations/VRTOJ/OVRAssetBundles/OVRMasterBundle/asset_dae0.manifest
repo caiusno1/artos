@@ -1,0 +1,33 @@
+ManifestFileVersion: 0
+CRC: 2286322136
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 8ebf55c0815b5efdf6811aa6317bdedc
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 7428a5560c5923e1a894e3e2445b8fc0
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/artos-core/Models/tabletBlender.dae
+- Assets/artos-core/Models/table2.dae
+Dependencies:
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_png1

@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 1693876335
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b4141e7ea0d3834f317bf207db091b05
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: fdf6c57a251b9f6ec27bdd2fe01b033c
+HashAppended: 0
+ClassTypes:
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Animations/Cursors/DefaultCursor/DefaultCursor.controller
+- Assets/Oculus/VR/Meshes/OculusTouchForQuestAndRiftS/Animation/OculusTouchQuestAndRiftSLeftAnimation.controller
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Animations/Cursors/TeleportCursor/TeleportCursorController.controller
+- Assets/Oculus/VR/Meshes/OculusTouchForQuest2/Animation/OculusTouchQuest2LeftAnimation.controller
+- Assets/Oculus/VR/Meshes/OculusTouchForRift/Animation/OculusTouchRiftRightAnimation.controller
+- Assets/Oculus/VR/Meshes/OculusTouchForQuestAndRiftS/Animation/OculusTouchQuestAndRiftSRightAnimation.controller
+- Assets/Oculus/VR/Meshes/OculusTouchForQuest2/Animation/OculusTouchQuest2RightAnimation.controller
+- Assets/Oculus/VR/Meshes/OculusTouchForRift/Animation/OculusTouchRiftLeftAnimation.controller
+Dependencies:
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_anim0
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_fbx0

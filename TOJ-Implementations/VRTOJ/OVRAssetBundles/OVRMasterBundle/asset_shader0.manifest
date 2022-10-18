@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+CRC: 2379340388
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 67a69e9aca24a13c9f36018a48a5dcdd
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1848cfd019ebe6ef89967c6f90f2a3d4
+HashAppended: 0
+ClassTypes:
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/MRTK/Shaders/MixedRealityStandard.shader
+- Assets/MRTK/Shaders/MixedRealityTextMeshPro.shader
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Shaders/HandTriangles.shader
+- Packages/com.microsoft.mixedreality.toolkit.foundation/Providers/Oculus/XRSDK/MRTK-Quest/Art/Shaders/RimOutline.shader
+- Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader
+- Assets/MRTK/Shaders/InstancedColored.shader
+- Assets/MRTK/Shaders/MRTK_Wireframe.shader
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Shaders/FingerTipCursor.shader
+Dependencies: []

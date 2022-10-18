@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 1824201742
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: d932856615edfc6c23b2af8dc402410f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c21d61fe394c58399df3c6fb5c7c99b3
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Font Asset Icon.psd
+- Packages/com.unity.textmeshpro/Editor Resources/Gizmos/TMP - Text Component Icon.psd
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/StandardAssets/Sprites/DefaultIconsSpriteSheet.psd
+Dependencies: []

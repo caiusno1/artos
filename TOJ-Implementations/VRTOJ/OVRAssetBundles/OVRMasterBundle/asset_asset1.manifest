@@ -1,0 +1,81 @@
+ManifestFileVersion: 0
+CRC: 3415411915
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 6e9002ab8f61e0c02bc4bfe4939861de
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2b1ff2664a02bb00ac1f744ee6bef8bc
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: d0f53b7a20151524496349154c40c679, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: c33e3b76d6c5c0e48bb3b6ee686c7fd6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 7554812f08ec49e694a8d9d4ee235a9c, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a4a1c93114e9437cb75d8b3ee4e0e1ba, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a794cc45c30a79b4da55bfd426876503, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: e7e7db9a2688ed540af9819c456ba2e2, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Microsoft.MixedReality.Toolkit.SDK
+  ClassName: Microsoft.MixedReality.Toolkit.UI.ThemeDefinition
+- AssemblyName: Microsoft.MixedReality.Toolkit.SDK
+  ClassName: Microsoft.MixedReality.Toolkit.UI.ThemePropertyValue
+- AssemblyName: Microsoft.MixedReality.Toolkit.SDK
+  ClassName: Microsoft.MixedReality.Toolkit.UI.ThemeStateProperty
+- AssemblyName: Microsoft.MixedReality.Toolkit.SDK
+  ClassName: Microsoft.MixedReality.Toolkit.Utilities.Easing
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.CameraSystem.MixedRealityCameraSettingsConfiguration
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Input.MixedRealityGestureMapping
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Input.MixedRealityInputAction
+- AssemblyName: Microsoft.MixedReality.Toolkit
+  ClassName: Microsoft.MixedReality.Toolkit.Utilities.SystemType
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.FaceInfo_Legacy
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.FontAssetCreationSettings
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.KerningTable
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_Character
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_FontFeatureTable
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_FontWeightPair
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_Glyph
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.FaceInfo
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.Glyph
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.GlyphMetrics
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.GlyphRect
+Assets:
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealityCameraProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Features/UX/Interactable/Themes/PressableButtonIcon.asset
+- Packages/com.microsoft.mixedreality.toolkit.foundation/SDK/Profiles/DefaultMixedRealityGesturesProfile.asset
+- Packages/com.microsoft.mixedreality.toolkit.standardassets/FontsSDFTextures/DepthWriteOn/seguisb
+  SDF.asset
+Dependencies:
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_asset0
+- C:/Users/kbier/Desktop/artos/TOJ-Implementations/VRTOJ/OVRAssetBundles/OVRMasterBundle/asset_shader0
