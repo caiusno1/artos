@@ -3746,6 +3746,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4348747081502617792}
     - target: {fileID: 5628692491092701389, guid: 2e16e07b1fca5ea408d178f96b9c0d77, type: 3}
+      propertyPath: tutorialOnly
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628692491092701389, guid: 2e16e07b1fca5ea408d178f96b9c0d77, type: 3}
       propertyPath: tutorialFinishedBanner
       value: 
       objectReference: {fileID: 1233527310}
