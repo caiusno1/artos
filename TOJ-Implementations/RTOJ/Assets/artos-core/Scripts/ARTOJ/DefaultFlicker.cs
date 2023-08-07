@@ -24,6 +24,7 @@ public class DefaultFlicker : MonoBehaviour
     private float SOAStartTime = -1;
     private float SOAEndTime = -1;
     private int framerate = 60;
+    private Dictionary<GameObject, GameObject> objectCache = new Dictionary<GameObject, GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -108,12 +109,13 @@ public class DefaultFlicker : MonoBehaviour
                 probeHidable = null;
                 refHidable = null;
                 Debug.Log(this.soaDuration);
-                ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].SOAStartTime = this.SOAStartTime;
-                ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].SOAEndTime = this.SOAEndTime;
-                ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].soaDuration = this.soaDuration;
-                ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].realSOA = this.SOAEndTime - this.SOAStartTime;
-                ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1].valid = !invalid;
-                Debug.Log(ExperimentController.GetInstance().trialLog[ExperimentController.GetInstance().trialLog.Count - 1]);
+                var currTrial = ExperimentController.GetInstance().GetCurrentTrial();
+                currTrial.SOAStartTime = this.SOAStartTime;
+                currTrial.SOAEndTime = this.SOAEndTime;
+                currTrial.soaDuration = this.soaDuration;
+                currTrial.realSOA = this.SOAEndTime - this.SOAStartTime;
+                currTrial.valid = !invalid;
+                Debug.Log(currTrial);
                 this.callback.Invoke();
             }
             this.FrameIdx++;
@@ -133,14 +135,26 @@ public class DefaultFlicker : MonoBehaviour
     }
     private GameObject GetHideable(GameObject go)
     {
-        if (inR)
+        if (objectCache.ContainsKey(go))
         {
-            return go.GetComponent<Image>().gameObject;
+            return objectCache[go];
         }
         else
         {
-            return go.GetComponentInChildren<SpriteRenderer>().gameObject;
+            if (inR)
+            {
+                var retVal = go.GetComponent<Image>().gameObject;
+                objectCache.Add(go, retVal);
+                return retVal;
+            }
+            else
+            {
+                var retVal = go.GetComponentInChildren<SpriteRenderer>().gameObject;
+                objectCache.Add(go, retVal);
+                return retVal;
+            }
         }
+
 
     }
     public bool HasFinishedTOJ()

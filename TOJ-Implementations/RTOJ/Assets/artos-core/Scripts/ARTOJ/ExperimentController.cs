@@ -18,8 +18,8 @@ public class ExperimentController : MonoBehaviour
     public bool shuffelOrder = false;
     public AudioClip correctSound;
     public AudioClip wrongSound;
+    public AudioClip finishSound;
     private int currentPosition;
-    private int repetitions = 30;
     private static ExperimentController Instance;
     private ButtonProxy leftBtn;
     private ButtonProxy rightBtn;
@@ -41,6 +41,8 @@ public class ExperimentController : MonoBehaviour
     public List<int> repetitionsPerSOA = new List<int>(){24,24,32,32,48,48,48,32,32,24,24};
     public bool participantSet = false;
     public bool quickMode = false;
+    public bool tutorialOnly = false;
+    private AudioSource soundSrc;
     private void Awake()
     {
         if(Instance == null)
@@ -71,23 +73,34 @@ public class ExperimentController : MonoBehaviour
             {
 
                 System.Random r = new System.Random();
-                for (var i = 0; i < 10; i++)
+                var tututorialSize = 10;
+
+                if (tutorialOnly)
+                {
+                    tututorialSize = 30;
+                    quickMode = true;
+                }
+
+                for (var i = 0; i < tututorialSize; i++)
                 {
                     this.runtimeSetup.Add(new Dictionary<string, object>());
                     this.runtimeSetup[this.runtimeSetup.Count - 1].Add(this.currentSetup.conditions[0].Name, this.currentSetup.conditions[0].values[r.Next(0, this.currentSetup.conditions[0].values.Count-1)]);
                     this.runtimeSetup[this.runtimeSetup.Count - 1].Add("Mode", "Tutorial");
                 }
-                for (var i = 0; i < this.currentSetup.conditions[0].values.Count; i++)
+                if (!tutorialOnly)
                 {
-                    for (var repIdx = 0; repIdx < repetitionsPerSOA[i]; repIdx++)
+                    for (var i = 0; i < this.currentSetup.conditions[0].values.Count; i++)
                     {
-                        runtimeSetupRealData.Add(new Dictionary<string, object>());
-                        runtimeSetupRealData[runtimeSetupRealData.Count - 1].Add(this.currentSetup.conditions[0].Name, this.currentSetup.conditions[0].values[i]);
-                        runtimeSetupRealData[runtimeSetupRealData.Count - 1].Add("Mode", "Real");
+                        for (var repIdx = 0; repIdx < repetitionsPerSOA[i]; repIdx++)
+                        {
+                            runtimeSetupRealData.Add(new Dictionary<string, object>());
+                            runtimeSetupRealData[runtimeSetupRealData.Count - 1].Add(this.currentSetup.conditions[0].Name, this.currentSetup.conditions[0].values[i]);
+                            runtimeSetupRealData[runtimeSetupRealData.Count - 1].Add("Mode", "Real");
+                        }
                     }
+                    runtimeSetupRealData.Shuffle();
+                    this.runtimeSetup.AddRange(runtimeSetupRealData);
                 }
-                runtimeSetupRealData.Shuffle();
-                this.runtimeSetup.AddRange(runtimeSetupRealData);
             }
             else if(this.currentSetup.conditions.Count > 1)
             {
@@ -141,6 +154,7 @@ public class ExperimentController : MonoBehaviour
     {
         if(ExperimentalPositions.Count  > 0)
         {
+            soundSrc = GetComponent<AudioSource>();
             tutorialMngt.SetParticipantName(this.CurrentParticipantIdentifier, this.CurrentParticipantUID);
             this.currentPosition = 0;
             ExperimentalPositions[this.currentPosition % ExperimentalPositions.Count].transform.GetChild(0).gameObject.SetActive(true);
@@ -204,7 +218,7 @@ public class ExperimentController : MonoBehaviour
         rightBtn.RemoveAllListeners();
         var result = CheckUserResult(true);
         var probeSelected = CheckProbeFirst(true);
-        if(this.runtimeSetup[this.currentPosition].ContainsKey("Mode") && this.runtimeSetup[this.currentPosition]["Mode"] == "Tutorial")
+        if(this.runtimeSetup[this.currentPosition].ContainsKey("Mode") && (string)this.runtimeSetup[this.currentPosition]["Mode"] == "Tutorial")
         {
             Debug.Log("Tutorial");
             trialLog.Last().mode = "tutorial";
@@ -225,11 +239,14 @@ public class ExperimentController : MonoBehaviour
             PlayFeedbackSound(result);
         }
         applyPoints(result);
-        if (currentPosition < runtimeSetup.Count)
+        if (currentPosition < runtimeSetup.Count - 1)
         {
             if (quickMode)
             {
-                sendResult();
+                if (!tutorialOnly)
+                {
+                    sendResult();
+                }
                 this.state = StateMachine.TOJ_READY;
                 this.NextExperiment();
             }
@@ -242,6 +259,7 @@ public class ExperimentController : MonoBehaviour
         else
         {
             ExperimentController.Instance.state = StateMachine.ExperimentFinished;
+            soundSrc.PlayOneShot(this.finishSound);
             Debug.Log("Experiment finished");
             Application.Quit();
         }
@@ -253,7 +271,7 @@ public class ExperimentController : MonoBehaviour
         var result = CheckUserResult(false);
         var probeSelected = CheckProbeFirst(false);
 
-        if (this.runtimeSetup[this.currentPosition].ContainsKey("Mode") && this.runtimeSetup[this.currentPosition]["Mode"] == "Tutorial")
+        if (this.runtimeSetup[this.currentPosition].ContainsKey("Mode") && (string)this.runtimeSetup[this.currentPosition]["Mode"] == "Tutorial")
         {
             Debug.Log("Tutorial");
             trialLog.Last().mode = "tutorial";
@@ -290,6 +308,8 @@ public class ExperimentController : MonoBehaviour
         }
         else
         {
+            ExperimentController.Instance.state = StateMachine.ExperimentFinished;
+            soundSrc.PlayOneShot(this.finishSound);
             Debug.Log("Experiment finished");
             Application.Quit();
         }
@@ -304,7 +324,7 @@ public class ExperimentController : MonoBehaviour
     }
     public void NextExperiment()
     {
-        if(tutorialMode == true && this.runtimeSetup[currentPosition+1]["Mode"].Equals("Real"))
+        if(tutorialMode == true && currentPosition + 1 < this.runtimeSetup.Count && this.runtimeSetup[currentPosition+1]["Mode"].Equals("Real"))
         {
             tutorialMode = false;
             this.state = StateMachine.TutorialFinished;
@@ -332,7 +352,13 @@ public class ExperimentController : MonoBehaviour
                 leftBtn.AddListener(LeftBtnHandler);
                 rightBtn.AddListener(RightBtnHandler);
             }));
-
+        }
+        else
+        {
+            ExperimentController.Instance.state = StateMachine.ExperimentFinished;
+            soundSrc.PlayOneShot(this.finishSound);
+            Debug.Log("Experiment finished");
+            Application.Quit();
         }
     }
     public void applyPoints(bool feedback)
@@ -396,12 +422,16 @@ public class ExperimentController : MonoBehaviour
     {
         if (feedback)
         {
-            GetComponent<AudioSource>().PlayOneShot(this.correctSound);
+            soundSrc.PlayOneShot(this.correctSound);
         }
         else
         {
-            GetComponent<AudioSource>().PlayOneShot(this.wrongSound);
+            soundSrc.PlayOneShot(this.wrongSound);
         }
+    }
+    public TrialInfo GetCurrentTrial()
+    {
+        return this.trialLog[ExperimentController.GetInstance().trialLog.Count - 1];
     }
 }
 
